@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Global Sentiment Map</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+
+body{
+margin:0;
+background:#0d0d12;
+font-family:Arial;
+color:white;
+}
+
+#map{
+height:100vh;
+width:100%;
+}
+
+.title{
+position:absolute;
+z-index:999;
+top:20px;
+left:50%;
+transform:translateX(-50%);
+background:rgba(0,0,0,0.6);
+padding:10px 20px;
+border-radius:8px;
+font-size:20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="title">Global Love vs Hate Map</div>
+<div id="map"></div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+
+// JSON DATA (example)
+const sentimentData = [
+{country:"India", love:120, hate:20},
+{country:"United States of America", love:50, hate:80},
+{country:"Brazil", love:90, hate:10},
+{country:"Russia", love:20, hate:70},
+{country:"Australia", love:60, hate:10}
+];
+
+// create map
+var map = L.map('map').setView([20,0],2);
+
+// map tiles
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+maxZoom:18
+}).addTo(map);
+
+// load world countries geojson
+fetch("https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json")
+.then(res => res.json())
+.then(geoData => {
+
+L.geoJSON(geoData,{
+
+style:function(feature){
+
+let countryName = feature.properties.name;
+
+let data = sentimentData.find(
+c => c.country === countryName
+);
+
+if(!data){
+return {
+fillColor:"#555",
+weight:1,
+color:"#222",
+fillOpacity:0.4
+}
+}
+
+let score = data.love - data.hate;
+
+let color="yellow";
+
+if(score>30) color="green";
+if(score<-30) color="red";
+
+return{
+fillColor:color,
+weight:1,
+color:"#111",
+fillOpacity:0.7
+};
+
+},
+
+onEachFeature:function(feature,layer){
+
+let countryName = feature.properties.name;
+
+let data = sentimentData.find(
+c => c.country === countryName
+);
+
+if(data){
+
+layer.bindPopup(
+"<b>"+countryName+"</b><br>"+
+"Love: "+data.love+"<br>"+
+"Hate: "+data.hate
+);
+
+}
+
+}
+
+}).addTo(map);
+
+});
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,17 @@
+[
+  { "country": "India", "love": 120, "hate": 25 },
+  { "country": "United States of America", "love": 80, "hate": 95 },
+  { "country": "Brazil", "love": 70, "hate": 20 },
+  { "country": "Russia", "love": 40, "hate": 85 },
+  { "country": "China", "love": 50, "hate": 60 },
+  { "country": "Australia", "love": 65, "hate": 15 },
+  { "country": "United Kingdom", "love": 55, "hate": 45 },
+  { "country": "Germany", "love": 48, "hate": 30 },
+  { "country": "France", "love": 60, "hate": 35 },
+  { "country": "Japan", "love": 75, "hate": 18 },
+  { "country": "Canada", "love": 68, "hate": 22 },
+  { "country": "Mexico", "love": 52, "hate": 40 },
+  { "country": "South Africa", "love": 45, "hate": 33 },
+  { "country": "Indonesia", "love": 72, "hate": 20 },
+  { "country": "Saudi Arabia", "love": 39, "hate": 55 }
+]

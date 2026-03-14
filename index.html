@@ -3,35 +3,705 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Astrakshaya</title>
+  <title>Echo</title>
   <link rel="stylesheet" href="components/navbar/navbar.css" />
   <link rel="stylesheet" href="components/footer/footer.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,300;6..12,400;6..12,500;6..12,600&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    .wave-section {
+      width: 100%;
+      height: 100vh;
+      background: #0a0a0a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    #waveCanvas {
+      display: block;
+      transform: scale(1);
+      transform-origin: center;
+      transition: transform 0.1s ease-out;
+    }
+
+    .video-bar {
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      background: #0a0a0a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .video-bar__container {
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      position: relative;
+    }
+
+    .video-bar video {
+      width: 100%;
+      height: auto;
+      display: block;
+      margin: 0;
+      padding: 0;
+    }
+
+    .echo-section {
+      width: 100%;
+      height: auto;
+      min-height: auto;
+      background: #0a0a0a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    #echoCanvas {
+      display: block;
+      width: 100%;
+      height: auto;
+      margin: 0;
+      padding: 0;
+      max-height: 500px;
+    }
+
+    .sound-button {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      background: rgba(0, 0, 0, 0.6);
+      border: none;
+      border-radius: 50%;
+      color: white;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      z-index: 10;
+      transition: background 0.3s ease;
+    }
+
+    .sound-button:hover {
+      background: rgba(0, 0, 0, 0.8);
+    }
+  </style>
 </head>
 <body>
 
-  <!-- Navbar loads here -->
-  <header id="navbar-placeholder"></header>
+<header class="navbar" id="navbar">
+  <div class="navbar__bar">
 
-  <main>
-    <section class="hero">
-      <div class="hero__content">
-        <p class="hero__eyebrow">Space · Research · Innovation</p>
-        <h1 class="hero__title">Engineering the future<br>of deep space exploration.</h1>
-        <div class="hero__btns">
-          <a href="html/join.html" class="navbar__cta">Join Us</a>
-          <a href="html/mission.html" class="hero__btn-ghost">Explore Mission</a>
-        </div>
+    <a href="/" class="navbar__logo" aria-label="Echo">
+      <img src="assets/logo.png" alt="" class="navbar__logo-img" />
+      <span class="navbar__logo-text">Echo</span>
+    </a>
+
+    <nav class="navbar__nav" aria-label="Main navigation">
+      <ul class="navbar__list">
+
+        <li class="navbar__item">
+          <a href="html/research.html" class="navbar__link">Features</a>
+        </li>
+
+        <li class="navbar__item navbar__item--drop" data-drop="mission">
+          <button class="navbar__link navbar__trigger" aria-expanded="false">
+            Platforms
+            <svg class="navbar__chevron" width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </li>
+
+        <li class="navbar__item navbar__item--drop" data-drop="community">
+          <button class="navbar__link navbar__trigger" aria-expanded="false">
+            Developers 
+            <svg class="navbar__chevron" width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </li>
+
+        <li class="navbar__item navbar__item--drop" data-drop="resources">
+          <button class="navbar__link navbar__trigger" aria-expanded="false">
+            About 
+            <svg class="navbar__chevron" width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </li>
+
+      </ul>
+    </nav>
+
+    <div class="navbar__right">
+      <a href="html/join.html" class="navbar__cta">Try Echo</a>
+      <button class="navbar__hamburger" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+  </div>
+
+  <!-- Dropdowns -->
+  <div class="dropdown" id="drop-mission">
+    <div class="dropdown__inner">
+      <div class="dropdown__info">
+        <h3 class="dropdown__headline">Analyze conversations<br>across the internet</h3>
+        <p class="dropdown__sub">ECHO collects and analyzes comments from major social platforms to understand audience sentiment.</p>
+        <a href="html/mission.html" class="dropdown__see-all">See supported platforms</a>
       </div>
+      <ul class="dropdown__links">
+        <li><a href="#" class="dropdown__link">YouTube Comments <span>›</span></a></li>
+        <li><a href="#" class="dropdown__link">Instagram Reels <span>›</span></a></li>
+        <li><a href="#" class="dropdown__link">Twitter / X Replies <span>›</span></a></li>
+        <li><a href="#" class="dropdown__link">Reddit Discussions <span>›</span></a></li>
+        <li><a href="#" class="dropdown__link">Amazon Reviews <span>›</span></a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="dropdown" id="drop-community">
+    <div class="dropdown__inner">
+      <div class="dropdown__info">
+        <h3 class="dropdown__headline">Built by developers,<br>for developers</h3>
+        <p class="dropdown__sub">Integrate Echo into your applications using our APIs and developer tools.</p>
+        <a href="html/community.html" class="dropdown__see-all">Developer resources</a>
+      </div>
+      <ul class="dropdown__links">
+        <li><a href="#" class="dropdown__link">REST API <span>›</span></a></li>
+        <li><a href="#" class="dropdown__link">Documentation <span>›</span></a></li>
+        <li><a href="#" class="dropdown__link">SDKs & Tools <span>›</span></a></li>
+        <li><a href="#" class="dropdown__link">Open Source <span>›</span></a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="dropdown" id="drop-resources">
+    <div class="dropdown__inner">
+      <div class="dropdown__info">
+        <h3 class="dropdown__headline">Learn more about<br>ECHO and its mission</h3>
+      </div>
+      <ul class="dropdown__links">
+        <li><a href="#" class="dropdown__link">About Echo <span>›</span></a></li>
+        <li><a href="#" class="dropdown__link">Team <span>›</span></a></li>
+        <li><a href="#" class="dropdown__link">How Echo Works <span>›</span></a></li>
+        <li><a href="#" class="dropdown__link">Contact <span>›</span></a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <ul class="mobile-list">
+      <li><a href="html/research.html" class="mobile-link">Features</a></li>
+
+      <li class="mobile-group">
+        <button class="mobile-link mobile-group__btn" aria-expanded="false">
+          Platforms
+          <svg class="navbar__chevron" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <ul class="mobile-sub">
+          <li><a href="#" class="mobile-sublink">YouTube</a></li>
+          <li><a href="#" class="mobile-sublink">Instagram</a></li>
+          <li><a href="#" class="mobile-sublink">Twitter / X</a></li>
+          <li><a href="#" class="mobile-sublink">Reddit</a></li>
+        </ul>
+      </li>
+
+      <li class="mobile-group">
+        <button class="mobile-link mobile-group__btn" aria-expanded="false">
+          Developers
+          <svg class="navbar__chevron" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <ul class="mobile-sub">
+          <li><a href="#" class="mobile-sublink">API</a></li>
+          <li><a href="#" class="mobile-sublink">Documentation</a></li>
+          <li><a href="#" class="mobile-sublink">Open Source</a></li>
+        </ul>
+      </li>
+
+      <li class="mobile-group">
+        <button class="mobile-link mobile-group__btn" aria-expanded="false">
+          About
+          <svg class="navbar__chevron" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <ul class="mobile-sub">
+          <li><a href="#" class="mobile-sublink">About Echo</a></li>
+          <li><a href="#" class="mobile-sublink">Team</a></li>
+          <li><a href="#" class="mobile-sublink">Hackathon</a></li>
+        </ul>
+      </li>
+
+      <li class="mobile-cta-row">
+        <a href="html/join.html" class="navbar__cta">Try Echo</a>
+      </li>
+    </ul>
+  </div>
+
+</header>
+
+<div class="dropdown-overlay" id="dropOverlay"></div>
+
+<main>
+  <section class="hero">
+    <div class="hero__content">
+      <p class="hero__eyebrow">AI · COMMENT ANALYSIS · AUDIENCE INTELLIGENCE</p>
+      <h1 class="hero__title">Millions of comments.<br>One clear voice.</h1>
+      <div class="hero__btns">
+        <a href="html/join.html" class="navbar__cta">Analyze Comments</a>
+        <a href="html/mission.html" class="hero__btn-ghost">Explore Features</a>
+      </div>
+    </div>
+  </section>
+    <section class="wave-section" id="waveSection">
+      <canvas id="waveCanvas"></canvas>
+    </section>
+    <section class="video-bar">
+      <div class="video-bar__container">
+        <video id="videoPlayer" autoplay muted loop>
+          <source src="assets/echo.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <button class="sound-button" id="soundBtn" aria-label="Toggle Sound">
+          <svg class="sound-icon sound-icon--muted" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <line x1="23" y1="9" x2="17" y2="15"></line>
+            <line x1="17" y1="9" x2="23" y2="15"></line>
+          </svg>
+          <svg class="sound-icon sound-icon--unmuted" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+          </svg>
+        </button>
+      </div>
+    </section>
+    <section class="echo-section">
+      <canvas id="echoCanvas"></canvas>
     </section>
   </main>
 
-  <!-- Footer loads here -->
-  <footer id="footer-placeholder"></footer>
+<footer class="footer" id="footer">
+  <div class="footer__top">
 
-  <!-- Component loader -->
-  <script src="component.js"></script>
+    <div class="footer__brand">
+      <a href="/" class="footer__logo">
+        <img src="assets/logo.png" alt="" class="footer__logo-img" />
+        <span class="footer__logo-text">Echo</span>
+      </a>
+      <p class="footer__tagline">Hear Everything.</p>
+    </div>
+
+    <div class="footer__col">
+      <h4 class="footer__col-title">Features</h4>
+      <ul class="footer__col-list">
+        <li><a href="#" class="footer__col-link">The Globe</a></li>
+        <li><a href="#" class="footer__col-link">Commit Grid</a></li>
+        <li><a href="#" class="footer__col-link">The Mirror</a></li>
+        <li><a href="#" class="footer__col-link">The Shield</a></li>
+      </ul>
+    </div>
+
+    <div class="footer__col">
+      <h4 class="footer__col-title">Platforms</h4>
+      <ul class="footer__col-list">
+        <li><a href="#" class="footer__col-link">YouTube</a></li>
+        <li><a href="#" class="footer__col-link">Instagram</a></li>
+        <li><a href="#" class="footer__col-link">Twitter / X</a></li>
+        <li><a href="#" class="footer__col-link">Reddit</a></li>
+      </ul>
+    </div>
+
+    <div class="footer__col">
+      <h4 class="footer__col-title">Developers</h4>
+      <ul class="footer__col-list">
+        <li><a href="#" class="footer__col-link">API</a></li>
+        <li><a href="#" class="footer__col-link">Documentation</a></li>
+        <li><a href="#" class="footer__col-link">SDKs</a></li>
+      </ul>
+    </div>
+
+    <div class="footer__col">
+      <h4 class="footer__col-title">Company</h4>
+      <ul class="footer__col-list">
+        <li><a href="#" class="footer__col-link">About Echo</a></li>
+        <li><a href="#" class="footer__col-link">Team</a></li>
+        <li><a href="#" class="footer__col-link">How Echo Works</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer__bottom">
+    <p class="footer__copy">© <span id="footerYear"></span> Echo. All rights reserved.</p>
+  </div>
+
+</footer>
+
+<script src="components/navbar/navbar.js"></script>
+<script src="components/footer/footer.js"></script>
+
+<script>
+  // Wave Animation
+  (function () {
+    'use strict';
+
+    const canvas = document.getElementById('waveCanvas');
+    const ctx = canvas.getContext('2d');
+
+    const N = 7;
+    const BAR_W = 30;
+    const GAP = 40;
+    const R = BAR_W / 2;
+
+    let BASE_H = [];
+    let AMPLITUDE = [];
+
+    const BASE_RATIOS = [0.28, 0.38, 0.50, 0.62, 0.50, 0.38, 0.28];
+    const AMP_RATIOS  = [0.04, 0.06, 0.08, 0.10, 0.08, 0.06, 0.04];
+
+    let dpr = window.devicePixelRatio || 1;
+    let W, H;
+    let mouse = { x: -1 };
+    let last = performance.now();
+
+    const phase = Array.from({ length: N }, (_, i) => i * 0.9 + Math.random() * 0.6);
+    const spd   = Array.from({ length: N }, () => 0.5 + Math.random() * 0.3);
+
+    const pos = new Float32Array(N);
+    const vel = new Float32Array(N).fill(0);
+    const STIFFNESS = 100;
+    const DAMPING = 16;
+
+    const innerLevel = new Float32Array(N);
+    const innerVel   = new Float32Array(N).fill(0);
+    const INNER_STIFFNESS = 135;
+    const INNER_DAMPING = 21;
+
+    const liquidSeed = Array.from({ length: N }, () => Math.random() * Math.PI * 2);
+    const shimmerSeed = Array.from({ length: N }, () => Math.random() * 100);
+
+    function setup() {
+      dpr = window.devicePixelRatio || 1;
+      W = canvas.parentElement.offsetWidth;
+      H = canvas.parentElement.offsetHeight;
+
+      canvas.width = Math.round(W * dpr);
+      canvas.height = Math.round(H * dpr);
+      canvas.style.width = W + 'px';
+      canvas.style.height = H + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      for (let i = 0; i < N; i++) {
+        BASE_H[i] = H * BASE_RATIOS[i];
+        AMPLITUDE[i] = H * AMP_RATIOS[i];
+        pos[i] = BASE_H[i];
+        innerLevel[i] = BASE_H[i] * 0.72;
+      }
+    }
+
+    function wave(t, ph, s) {
+      return (
+        Math.sin(t * s + ph) * 0.50 +
+        Math.sin(t * s * 2.1 + ph * 1.3) * 0.30 +
+        Math.sin(t * s * 0.5 + ph * 0.8) * 0.20
+      );
+    }
+
+    function liquidWave(xn, t, idx, amp) {
+      return (
+        Math.sin(xn * 8.0 + t * 2.2 + liquidSeed[idx]) * amp * 0.55 +
+        Math.sin(xn * 14.0 - t * 1.5 + liquidSeed[idx] * 0.7) * amp * 0.25 +
+        Math.sin(xn * 22.0 + t * 3.3 + liquidSeed[idx] * 1.4) * amp * 0.12
+      );
+    }
+
+    function shimmerNoise(xn, yn, t, idx) {
+      return (
+        0.5 +
+        0.25 * Math.sin(xn * 18 + t * 1.4 + shimmerSeed[idx]) +
+        0.15 * Math.sin(yn * 26 - t * 2.1 + shimmerSeed[idx] * 0.7) +
+        0.10 * Math.sin((xn + yn) * 20 + t * 2.8)
+      );
+    }
+
+    function roundedBarPath(x, top, h) {
+      ctx.beginPath();
+      ctx.roundRect(x, top, BAR_W, h, R);
+    }
+
+    function drawLiquidFill(x, top, h, fillH, brightness, t, idx) {
+      const left = x;
+      const right = x + BAR_W;
+      const bottom = top + h;
+      const fillTopBase = bottom - fillH;
+      const surfAmp = Math.min(10, Math.max(4, fillH * 0.06));
+
+      ctx.save();
+      roundedBarPath(x, top, h);
+      ctx.clip();
+
+      const fluidGrad = ctx.createLinearGradient(x, fillTopBase, x, bottom);
+      fluidGrad.addColorStop(0, `rgba(255,255,255,${(brightness * 0.12).toFixed(3)})`);
+      fluidGrad.addColorStop(0.45, `rgba(255,255,255,${(brightness * 0.22).toFixed(3)})`);
+      fluidGrad.addColorStop(1, `rgba(255,255,255,${(brightness * 0.06).toFixed(3)})`);
+      ctx.fillStyle = fluidGrad;
+
+      ctx.beginPath();
+      for (let s = 0; s <= 24; s++) {
+        const xn = s / 24;
+        const px = left + xn * BAR_W;
+        const py = fillTopBase + liquidWave(xn, t, idx, surfAmp);
+        if (s === 0) ctx.moveTo(px, py);
+        else ctx.lineTo(px, py);
+      }
+      ctx.lineTo(right, bottom);
+      ctx.lineTo(left, bottom);
+      ctx.closePath();
+      ctx.fill();
+
+      for (let y = fillTopBase; y < bottom; y += 3.2) {
+        const yn = (y - fillTopBase) / Math.max(1, fillH);
+        const alpha = (0.018 + yn * 0.03) * brightness;
+        ctx.fillStyle = `rgba(255,255,255,${alpha.toFixed(3)})`;
+
+        for (let s = 0; s < 8; s++) {
+          const xn = s / 7;
+          const px = left + 3 + xn * (BAR_W - 6);
+          const n = shimmerNoise(xn, yn, t, idx);
+          const w = 1 + n * 1.2;
+          ctx.fillRect(px, y, w, 1);
+        }
+      }
+
+      ctx.strokeStyle = `rgba(255,255,255,${(brightness * 0.22).toFixed(3)})`;
+      ctx.lineWidth = 1.2;
+      ctx.beginPath();
+      for (let s = 0; s <= 24; s++) {
+        const xn = s / 24;
+        const px = left + xn * BAR_W;
+        const py = fillTopBase + liquidWave(xn, t, idx, surfAmp);
+        if (s === 0) ctx.moveTo(px, py);
+        else ctx.lineTo(px, py);
+      }
+      ctx.stroke();
+
+      const bubbleCount = 3;
+      for (let b = 0; b < bubbleCount; b++) {
+        const pr = 1.2 + b * 0.45;
+        const bx = left + 7 + ((Math.sin(t * (0.8 + b * 0.3) + idx * 1.7 + b) * 0.5 + 0.5) * (BAR_W - 14));
+        const rise = ((t * (18 + b * 7) + idx * 23 + b * 31) % Math.max(30, fillH + 20));
+        const by = bottom - rise;
+        if (by > fillTopBase + 4 && by < bottom - 4) {
+          ctx.fillStyle = `rgba(255,255,255,${(0.08 * brightness).toFixed(3)})`;
+          ctx.beginPath();
+          ctx.arc(bx, by, pr, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+
+      ctx.restore();
+    }
+
+    function drawBar(x, cy, h, brightness, t, idx) {
+      const halfH = h / 2;
+      const top = cy - halfH;
+
+      const shell = ctx.createLinearGradient(x, top, x, top + h);
+      shell.addColorStop(0,    `rgba(255,255,255,${(brightness * 0.05).toFixed(3)})`);
+      shell.addColorStop(0.18, `rgba(255,255,255,${(brightness * 0.45).toFixed(3)})`);
+      shell.addColorStop(0.50, `rgba(255,255,255,${(brightness * 0.95).toFixed(3)})`);
+      shell.addColorStop(0.82, `rgba(255,255,255,${(brightness * 0.45).toFixed(3)})`);
+      shell.addColorStop(1,    `rgba(255,255,255,${(brightness * 0.05).toFixed(3)})`);
+
+      ctx.fillStyle = shell;
+      roundedBarPath(x, top, h);
+      ctx.fill();
+
+      const edgeGlow = ctx.createLinearGradient(x, top, x + BAR_W, top);
+      edgeGlow.addColorStop(0, 'rgba(255,255,255,0.18)');
+      edgeGlow.addColorStop(0.35, 'rgba(255,255,255,0.05)');
+      edgeGlow.addColorStop(1, 'rgba(255,255,255,0)');
+      ctx.fillStyle = edgeGlow;
+      ctx.save();
+      roundedBarPath(x, top, h);
+      ctx.clip();
+      ctx.fillRect(x, top, BAR_W, h);
+      ctx.restore();
+
+      const fillTarget = innerLevel[idx];
+      drawLiquidFill(x, top, h, fillTarget, brightness, t, idx);
+    }
+
+    function frame(now) {
+      const dt = Math.min((now - last) / 1000, 0.05);
+      last = now;
+      const t = now / 1000;
+
+      ctx.clearRect(0, 0, W, H);
+
+      const cx = W / 2;
+      const cy = H / 2;
+      const totalW = N * BAR_W + (N - 1) * GAP;
+      const startX = cx - totalW / 2;
+
+      for (let i = 0; i < N; i++) {
+        const wv = wave(t, phase[i], spd[i]);
+        let target = BASE_H[i] + wv * AMPLITUDE[i];
+
+        if (mouse.x >= 0) {
+          const barCx = startX + i * (BAR_W + GAP) + BAR_W / 2;
+          const dist = Math.abs(barCx - mouse.x);
+          const pull = Math.max(0, 1 - dist / 140);
+          target += pull * AMPLITUDE[i] * 2.0;
+        }
+
+        const acc = (target - pos[i]) * STIFFNESS - vel[i] * DAMPING;
+        vel[i] += acc * dt;
+        pos[i] += vel[i] * dt;
+        pos[i] = Math.max(H * 0.04, pos[i]);
+
+        const liquidTarget =
+          pos[i] * 0.68 +
+          Math.sin(t * 1.4 + i * 0.9 + liquidSeed[i]) * (AMPLITUDE[i] * 0.22);
+
+        const innerAcc = (liquidTarget - innerLevel[i]) * INNER_STIFFNESS - innerVel[i] * INNER_DAMPING;
+        innerVel[i] += innerAcc * dt;
+        innerLevel[i] += innerVel[i] * dt;
+        innerLevel[i] = Math.max(pos[i] * 0.18, Math.min(pos[i] * 0.92, innerLevel[i]));
+
+        const distRatio = Math.abs(i - (N - 1) / 2) / ((N - 1) / 2);
+        const brightness = 1.0 - distRatio * 0.62;
+
+        drawBar(startX + i * (BAR_W + GAP), cy, pos[i], brightness, t, i);
+      }
+
+      requestAnimationFrame(frame);
+    }
+
+    window.addEventListener('mousemove', e => { mouse.x = e.clientX; });
+    window.addEventListener('mouseleave', () => { mouse.x = -1; });
+    window.addEventListener('touchmove', e => { mouse.x = e.touches[0].clientX; }, { passive: true });
+    window.addEventListener('touchend', () => { mouse.x = -1; });
+    window.addEventListener('resize', setup);
+
+    setup();
+    requestAnimationFrame(frame);
+  })();
+
+  // Scroll Zoom Animation
+  window.addEventListener('scroll', () => {
+    const waveSection = document.getElementById('waveSection');
+    const rect = waveSection.getBoundingClientRect();
+    
+    // Calculate how much of the section is visible in viewport
+    const viewportHeight = window.innerHeight;
+    const sectionHeight = waveSection.clientHeight;
+    
+    // When section is entering viewport from bottom, start zoom
+    const scrollProgress = (viewportHeight - rect.top) / (viewportHeight + sectionHeight);
+    
+    // Clamp between 0 and 1, then scale from 0.8 to 1.2
+    const normalizedProgress = Math.max(0, Math.min(1, scrollProgress));
+    const scale = 0.8 + (normalizedProgress * 0.4); // Scales from 0.8 to 1.2
+    
+    // Get canvas element
+    const canvas = document.getElementById('waveCanvas');
+    if (canvas) {
+      canvas.style.transform = `scale(${scale})`;
+    }
+  });
+
+  // Sound Button Functionality
+  const soundBtn = document.getElementById('soundBtn');
+  const videoPlayer = document.getElementById('videoPlayer');
+  const mutedIcon = soundBtn.querySelector('.sound-icon--muted');
+  const unmutedIcon = soundBtn.querySelector('.sound-icon--unmuted');
+
+  soundBtn.addEventListener('click', () => {
+    videoPlayer.muted = !videoPlayer.muted;
+    mutedIcon.style.display = videoPlayer.muted ? 'block' : 'none';
+    unmutedIcon.style.display = videoPlayer.muted ? 'none' : 'block';
+  });
+
+  // ECHO Canvas Animation
+  (function () {
+    'use strict';
+
+    const canvas = document.getElementById('echoCanvas');
+    const ctx    = canvas.getContext('2d');
+    const TEXT   = 'ECHO';
+
+    let W, H;
+
+    function setup() {
+      const dpr = window.devicePixelRatio || 1;
+      W = window.innerWidth;
+      H = 500;
+      canvas.width        = Math.round(W * dpr);
+      canvas.height       = Math.round(H * dpr);
+      canvas.style.width  = W + 'px';
+      canvas.style.height = H + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      draw();
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, W, H);
+
+      /* Binary search for exact font size that fills full width */
+      let lo = 10, hi = 2000, size = 500;
+      for (let i = 0; i < 30; i++) {
+        size = (lo + hi) / 2;
+        ctx.font = `900 ${size}px 'Arial Black', Arial, sans-serif`;
+        const w = ctx.measureText(TEXT).width;
+        if (w < W) lo = size;
+        else        hi = size;
+      }
+
+      ctx.font = `900 ${size}px 'Arial Black', Arial, sans-serif`;
+      ctx.textBaseline = 'middle';
+      ctx.textAlign    = 'center';
+
+      /* Outline only — no fill */
+      ctx.strokeStyle = 'rgba(255,255,255,0.18)';
+      ctx.lineWidth   = Math.max(1, size * 0.004);
+      ctx.strokeText(TEXT, W / 2, H * 0.74);
+    }
+
+    window.addEventListener('resize', setup);
+    setup();
+  })();
+</script>
+
 </body>
 </html>

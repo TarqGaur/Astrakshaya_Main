@@ -1,0 +1,200 @@
+{
+  "countryOpinionMap": {
+    "generatedAt": "2026-03-14T17:47:45.393Z",
+    "totalComments": 100,
+    "totalClassified": 43,
+    "unknownCount": 57,
+    "countries": [
+      {
+        "country": "India",
+        "pos": 14,
+        "neg": 0,
+        "neu": 1,
+        "total": 15,
+        "examples": [
+          "\"Do you play in a band?\" Tom: \"I am the band.\"",
+          "Its a tradition to watch this again once in a while.",
+          "I dont know how this man hasn't forgotten his original voice."
+        ]
+      },
+      {
+        "country": "United States",
+        "pos": 10,
+        "neg": 0,
+        "neu": 2,
+        "total": 12,
+        "examples": [
+          "Ten years later, and still a crushing masterpiece",
+          "Why does this guy’s trumpet impression sound more like a trumpet than me playing my trumpet",
+          "People came for a TED talk... THEY GOT A CONCERT"
+        ]
+      },
+      {
+        "country": "Germany",
+        "pos": 2,
+        "neg": 0,
+        "neu": 1,
+        "total": 3,
+        "examples": [
+          "This is beyond beatboxing...",
+          "Germany is famous for Techno ;)",
+          "Who is in 2025?"
+        ]
+      },
+      {
+        "country": "China",
+        "pos": 2,
+        "neg": 0,
+        "neu": 0,
+        "total": 2,
+        "examples": [
+          "(After the show) Tom:Here is your microphone. Manager:Yeah,about that..... You can take that.",
+          "It's like half a comedy stand up and half a beatboxing performance..."
+        ]
+      },
+      {
+        "country": "Japan",
+        "pos": 2,
+        "neg": 0,
+        "neu": 0,
+        "total": 2,
+        "examples": [
+          "12 years later and it's still the best Ted Talk.",
+          "I came here to study English and now I learned a new phrase: party party yeah."
+        ]
+      },
+      {
+        "country": "United Kingdom",
+        "pos": 2,
+        "neg": 0,
+        "neu": 0,
+        "total": 2,
+        "examples": [
+          "12 years later and still coming back to enjoy this masterclass",
+          "People that disliked it r just jealous i swear"
+        ]
+      },
+      {
+        "country": "Turkey",
+        "pos": 1,
+        "neg": 0,
+        "neu": 0,
+        "total": 1,
+        "examples": [
+          "Tom: beatboxes Right hand: 🎤 Left hand: 👋✊👊..."
+        ]
+      },
+      {
+        "country": "South Korea",
+        "pos": 1,
+        "neg": 0,
+        "neu": 0,
+        "total": 1,
+        "examples": [
+          "4 years later and it's still my favorite video on youtube.."
+        ]
+      },
+      {
+        "country": "France",
+        "pos": 1,
+        "neg": 0,
+        "neu": 0,
+        "total": 1,
+        "examples": [
+          "he is more than a beatboxer, he dose much more than beats."
+        ]
+      },
+      {
+        "country": "Sweden",
+        "pos": 1,
+        "neg": 0,
+        "neu": 0,
+        "total": 1,
+        "examples": [
+          "He kissed a girl once. She died."
+        ]
+      },
+      {
+        "country": "Middle East",
+        "pos": 0,
+        "neg": 0,
+        "neu": 1,
+        "total": 1,
+        "examples": [
+          "Tom: Here is your microphone Producers: Nah you can keep it."
+        ]
+      },
+      {
+        "country": "Africa",
+        "pos": 1,
+        "neg": 0,
+        "neu": 0,
+        "total": 1,
+        "examples": [
+          "This guy is some kind of A WIZARD"
+        ]
+      },
+      {
+        "country": "Indonesia",
+        "pos": 1,
+        "neg": 0,
+        "neu": 0,
+        "total": 1,
+        "examples": [
+          "remember watching this waaay back in 2015 and it still amazes me"
+        ]
+      }
+    ]
+  },
+  "hateSourceByCountry": {
+    "generatedAt": "2026-03-14T17:47:45.393Z",
+    "totalNegativeComments": 1,
+    "countries": []
+  },
+  "topDiscussionThread": {
+    "platform": "yt",
+    "id": "UgyyLS76_ktDwBHDee94AaABAg",
+    "author": "@frieza1385",
+    "text": "The most famous Ted Talk wasn’t even a talk",
+    "timestamp": "2020-05-15T09:19:45Z",
+    "likes": 13394,
+    "replyCount": 5,
+    "replies": [
+      {
+        "author": "@amouney",
+        "avatar": "https://yt3.ggpht.com/gsuh6aFlc-nP1hGQg8i8iOzcH3tpNkBp0R9DhL65jia8RZOkja2GsPDxT9Hq9JP_jwd-q8MtSw=s48-c-k-c0x00ffffff-no-rj",
+        "text": "Hahahah riiiight",
+        "timestamp": "2020-05-24T01:53:59Z",
+        "likes": 65
+      },
+      {
+        "author": "@unlimitedbread3723",
+        "avatar": "https://yt3.ggpht.com/ytc/AIdro_nyCTy6pOc0GfQInG-mXndVmqJIQayknmgIxWkfikJpues=s48-c-k-c0x00ffffff-no-rj",
+        "text": "it was a talk, but in <i>cursive</i>",
+        "timestamp": "2020-05-28T07:19:21Z",
+        "likes": 453
+      },
+      {
+        "author": "@michaeljacksonfan2298",
+        "avatar": "https://yt3.ggpht.com/ytc/AIdro_lcAmMbPOEe9qedm_Zdi-OA5WVNFOUAR0WTa489kl8=s48-c-k-c0x00ffffff-no-rj",
+        "text": "We got a concert instead",
+        "timestamp": "2020-05-30T19:49:15Z",
+        "likes": 147
+      },
+      {
+        "author": "@demonlord4661",
+        "avatar": "https://yt3.ggpht.com/CxaEQN7QPuy7Xj1mpLdtY6YeRdMzuWylKXfLkau3Vmh6X1AFbpPV96zff0INHnp-ez8BaDzv=s48-c-k-c0x00ffffff-no-rj",
+        "text": "Talk about irony",
+        "timestamp": "2020-05-31T17:33:03Z",
+        "likes": 52
+      },
+      {
+        "author": "@vumple2140",
+        "avatar": "https://yt3.ggpht.com/ytc/AIdro_mggWToGELKfhwHXpt4urv0MQsvTwcIO6IMETF5tZcOvt4=s48-c-k-c0x00ffffff-no-rj",
+        "text": "It was talking, but it’s really was just rice crispies’ popping",
+        "timestamp": "2020-06-10T02:40:48Z",
+        "likes": 33
+      }
+    ]
+  }
+}

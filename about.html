@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Echo</title>
+  <link rel="stylesheet" href="components/navbar/navbar.css" />
+  <link rel="stylesheet" href="components/footer/footer.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,300;6..12,400;6..12,500;6..12,600&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      background: #0a0a0a;
+      color: #dde0ea;
+      font-family: 'Nunito Sans', sans-serif;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    main {
+      flex: 1;
+      padding: 80px 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    h1 {
+      font-size: 48px;
+      font-weight: 700;
+      margin-bottom: 30px;
+      color: #fff;
+    }
+
+    h2 {
+      font-size: 32px;
+      font-weight: 700;
+      margin: 50px 0 20px;
+      color: #fff;
+    }
+
+    p {
+      font-size: 16px;
+      line-height: 1.6;
+      color: #dde0ea;
+      margin-bottom: 20px;
+    }
+
+    a {
+      color: #58a6ff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .about-section {
+      margin-bottom: 60px;
+    }
+
+    .footer {
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+
+<header class="navbar" id="navbar">
+  <div class="navbar__bar">
+
+    <a href="/" class="navbar__logo" aria-label="Echo">
+      <img src="assets/logo.png" alt="" class="navbar__logo-img" />
+      <span class="navbar__logo-text">Echo</span>
+    </a>
+
+    <nav class="navbar__nav" aria-label="Main navigation">
+      <ul class="navbar__list">
+
+        <li class="navbar__item">
+          <a href="html/research.html" class="navbar__link">Features</a>
+        </li>
+
+        <li class="navbar__item navbar__item--drop" data-drop="mission">
+          <button class="navbar__link navbar__trigger" aria-expanded="false">
+            Platforms
+            <svg class="navbar__chevron" width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </li>
+
+        <li class="navbar__item navbar__item--drop" data-drop="community">
+          <button class="navbar__link navbar__trigger" aria-expanded="false">
+            Developers 
+            <svg class="navbar__chevron" width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </li>
+
+        <li class="navbar__item navbar__item--drop" data-drop="resources">
+          <button class="navbar__link navbar__trigger" aria-expanded="false">
+            About 
+            <svg class="navbar__chevron" width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </li>
+
+      </ul>
+    </nav>
+
+    <div class="navbar__right">
+      <a href="html/join.html" class="navbar__cta">Try Echo</a>
+      <button class="navbar__hamburger" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+  </div>
+
+  <!-- Dropdowns -->
+  <div class="dropdown" id="drop-mission">
+    <div class="dropdown__inner">
+      <div class="dropdown__info">
+        <h3 class="dropdown__headline">Analyze conversations<br>across the internet</h3>
+        <p class="dropdown__sub">ECHO collects and analyzes comments from major social platforms to understand audience sentiment.</p>
+        <a href="html/mission.html" class="dropdown__see-all">See supported platforms</a>
+      </div>
+      <ul class="dropdown__links">
+        <li><a href="#" class="dropdown__link">YouTube Comments <span>›</span></a></li>
+        <li><a href="#" class="dropdown__link">Instagram Reels <span>›</span></a></li>
+        <li><a href="#" class="dropdown__link">Twitter / X Replies <span>›</span></a></li>
+        <li><a href="#" class="dropdown__link">Reddit Discussions <span>›</span></a></li>
+        <li><a href="#" class="dropdown__link">Amazon Reviews <span>›</span></a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="dropdown" id="drop-community">
+    <div class="dropdown__inner">
+      <div class="dropdown__info">
+        <h3 class="dropdown__headline">Built by developers,<br>for developers</h3>
+        <p class="dropdown__sub">Integrate Echo into your applications using our APIs and developer tools.</p>
+        <a href="html/community.html" class="dropdown__see-all">Developer resources</a>
+      </div>
+      <ul class="dropdown__links">
+        <li><a href="#" class="dropdown__link">REST API <span>›</span></a></li>
+        <li><a href="#" class="dropdown__link">Documentation <span>›</span></a></li>
+        <li><a href="#" class="dropdown__link">SDKs & Tools <span>›</span></a></li>
+        <li><a href="#" class="dropdown__link">Open Source <span>›</span></a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="dropdown" id="drop-resources">
+    <div class="dropdown__inner">
+      <div class="dropdown__info">
+        <h3 class="dropdown__headline">Learn more about<br>ECHO and its mission</h3>
+      </div>
+      <ul class="dropdown__links">
+        <li><a href="#" class="dropdown__link">About Echo <span>›</span></a></li>
+        <li><a href="#" class="dropdown__link">Team <span>›</span></a></li>
+        <li><a href="#" class="dropdown__link">How Echo Works <span>›</span></a></li>
+        <li><a href="#" class="dropdown__link">Contact <span>›</span></a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <ul class="mobile-list">
+      <li><a href="html/research.html" class="mobile-link">Features</a></li>
+
+      <li class="mobile-group">
+        <button class="mobile-link mobile-group__btn" aria-expanded="false">
+          Platforms
+          <svg class="navbar__chevron" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <ul class="mobile-sub">
+          <li><a href="#" class="mobile-sublink">YouTube</a></li>
+          <li><a href="#" class="mobile-sublink">Instagram</a></li>
+          <li><a href="#" class="mobile-sublink">Twitter / X</a></li>
+          <li><a href="#" class="mobile-sublink">Reddit</a></li>
+        </ul>
+      </li>
+
+      <li class="mobile-group">
+        <button class="mobile-link mobile-group__btn" aria-expanded="false">
+          Developers
+          <svg class="navbar__chevron" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <ul class="mobile-sub">
+          <li><a href="#" class="mobile-sublink">API</a></li>
+          <li><a href="#" class="mobile-sublink">Documentation</a></li>
+          <li><a href="#" class="mobile-sublink">Open Source</a></li>
+        </ul>
+      </li>
+
+      <li class="mobile-group">
+        <button class="mobile-link mobile-group__btn" aria-expanded="false">
+          About
+          <svg class="navbar__chevron" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <ul class="mobile-sub">
+          <li><a href="#" class="mobile-sublink">About Echo</a></li>
+          <li><a href="#" class="mobile-sublink">Team</a></li>
+          <li><a href="#" class="mobile-sublink">Hackathon</a></li>
+        </ul>
+      </li>
+
+      <li class="mobile-cta-row">
+        <a href="html/join.html" class="navbar__cta">Try Echo</a>
+      </li>
+    </ul>
+  </div>
+
+</header>
+
+<div class="dropdown-overlay" id="dropOverlay"></div>
+
+<main>
+  <div class="about-section">
+    <h1>ECHO — Hear Everything</h1>
+    <p style="font-size: 20px; font-weight: 600; margin-bottom: 40px;">World's First Audience Relationship Manager for Content Creators</p>
+  </div>
+
+  <div class="about-section">
+    <p>This is ECHO — a revolutionary AI tool built for content creators. When creators post a video, 10,000 comments come in within 24 hours. But they only read 50, and guess about the rest. The next video underperforms. Why? Because there was no tool to understand real honest feedback. ECHO solves this problem.</p>
+  </div>
+
+  <div class="about-section">
+    <h2>The Problem Creators Face</h2>
+    <p>Every day 500 million comments are posted on YouTube, Instagram, and Reddit. This is the most honest feedback creators can get. But:</p>
+    <ul style="margin: 15px 0 20px 20px; color: #dde0ea;">
+      <li>Scale Issue: Reading 10K comments manually is impossible</li>
+      <li>Context Missing: A single comment doesn't tell you overall audience mood</li>
+      <li>Geography Blind: Comments from India or US? You don't know</li>
+      <li>Patterns Hidden: When was your audience happy, when angry? No tracking</li>
+      <li>Abuse Ignored: Toxic comments silently accumulate</li>
+    </ul>
+    <p>Result: Creators make the next video based on guesswork. Hit/miss ratio stays low.</p>
+  </div>
+
+  <div class="about-section">
+    <h2>What ECHO Does</h2>
+    <p>ECHO is not a traditional sentiment dashboard. It provides three cinematic experiences:</p>
+  </div>
+
+  <div class="about-section">
+    <h3 style="font-size: 24px; margin: 30px 0 15px;">1. The Globe - Hero Feature</h3>
+    <p>A live 3D interactive globe where every comment becomes a colored pin that drops in real-time:</p>
+    <ul style="margin: 15px 0 20px 20px; color: #dde0ea;">
+      <li>Green pin = Positive (Love, appreciation)</li>
+      <li>Red pin = Negative (Hate, criticism)</li>
+      <li>Yellow pin = Emotional (Surprise, excitement)</li>
+      <li>Black pin = Abusive (Flagged automatically)</li>
+    </ul>
+    <p>Countries glow based on dominant sentiment. India 80% positive shows deep green glow. Brazil with a hate cluster shows red region glow. Your audience has a geography.</p>
+  </div>
+
+  <div class="about-section">
+    <h3 style="font-size: 24px; margin: 30px 0 15px;">2. The Commit Grid</h3>
+    <p>Like a GitHub contribution graph — a 365-day grid showing your audience relationship history:</p>
+    <ul style="margin: 15px 0 20px 20px; color: #dde0ea;">
+      <li>Green = Audience loved you</li>
+      <li>Red = Hate wave or toxic day</li>
+      <li>Yellow = Emotional or controversial day</li>
+      <li>Grey = Silence or dead engagement</li>
+      <li>Ice Blue Diamond = Viral moment</li>
+    </ul>
+    <p>Click any square to see all comments from that day. Your audience relationship, version controlled.</p>
+  </div>
+
+  <div class="about-section">
+    <h3 style="font-size: 24px; margin: 30px 0 15px;">3. The Mirror + The Shield</h3>
+    <p><strong>The Mirror:</strong> An AI-written honest paragraph from your audience's voice. "Your audience loves your editing style but Tier 2 cities feel disconnected since October."</p>
+    <p><strong>The Shield:</strong> Abusive comments go to RED ZONE, create offender profile cards, generate 1-click Cybercell reports, and export legal PDF evidence.</p>
+  </div>
+
+  <div class="about-section">
+    <h2>How It Works</h2>
+    <ol style="margin: 15px 0 20px 20px; color: #dde0ea;">
+      <li>User pastes a URL — YouTube, Instagram, Reddit, Twitter, or Amazon auto-detected</li>
+      <li>Comments scrape in real-time using platform APIs</li>
+      <li>4-class sentiment analysis (HuggingFace + custom abuse classifier)</li>
+      <li>IP geolocation with NameScript Intelligence fallback</li>
+      <li>Live visualization on Globe, Grid, and Mirror</li>
+    </ol>
+    <p><strong>Tech Stack:</strong></p>
+    <ul style="margin: 15px 0 20px 20px; color: #dde0ea;">
+      <li>Frontend: React + Three.js (Globe) + Chart.js (Grid)</li>
+      <li>Backend: FastAPI + Celery + Redis</li>
+      <li>AI: Claude API (Mirror summaries) + HuggingFace Transformers</li>
+      <li>Scraping: Platform APIs + Playwright fallback</li>
+    </ul>
+  </div>
+
+  <div class="about-section">
+    <h2>Why Creators Need ECHO</h2>
+    <p><strong>Before ECHO:</strong> Video → 10K comments → Read 50 → Guess → Next video flops</p>
+    <p><strong>With ECHO:</strong> Video → 10K comments → Globe lights up → Patterns emerge → Data-driven next video → Guaranteed growth → Repeat</p>
+    <p><strong>Real Outcomes:</strong></p>
+    <ul style="margin: 15px 0 20px 20px; color: #dde0ea;">
+      <li>Understand geography: India positive, Brazil negative? Now you know</li>
+      <li>Spot trends early: Hate wave starting? See it immediately on the Grid</li>
+      <li>Protect yourself: Abuser's full profile plus 1-click legal action</li>
+      <li>Audience speaks directly: Mirror gives you honest AI-written feedback</li>
+    </ul>
+  </div>
+
+  <div class="about-section">
+    <h2>The 4-Class Sentiment System</h2>
+    <p>Traditional tools use 3 classes: Positive, Negative, Neutral. ECHO uses 4 classes plus a separate Abuse detector:</p>
+    <ul style="margin: 15px 0 20px 20px; color: #dde0ea;">
+      <li>1. Positive — Love, appreciation, support</li>
+      <li>2. Negative — Hate, criticism, complaints</li>
+      <li>3. Emotional — Sadness, excitement, surprise</li>
+      <li>4. Neutral — Factual observations</li>
+      <li>Plus: Abusive — Separate toxicity classifier</li>
+    </ul>
+    <p>This granularity reveals true audience emotion.</p>
+  </div>
+
+  <div class="about-section">
+    <h2>Brand Identity</h2>
+    <p><strong>Primary Color:</strong> Deep Red #8B1A1A</p>
+    <p><strong>Background:</strong> Off-white #F5F2EE</p>
+    <p><strong>Accents:</strong></p>
+    <ul style="margin: 15px 0 20px 20px; color: #dde0ea;">
+      <li>Green #39D353 (Positive)</li>
+      <li>Red #FF4444 (Negative)</li>
+      <li>Yellow #F0A500 (Emotional)</li>
+      <li>Ice Blue #B9F2FF (Viral)</li>
+    </ul>
+    <p><strong>Logo:</strong> Concentric sound waves forming a globe shape</p>
+    <p><strong>Tagline:</strong> "Hear Everything."</p>
+  </div>
+
+  <div class="about-section">
+    <h2>Competitive Edge</h2>
+    <p>ECHO wins because people emotionally connect when they see India glowing green or abusive black pins clustering. We provide the highest granularity in sentiment analysis, the most immersive visualization, and the only legal protection system for creators.</p>
+  </div>
+
+  <div class="about-section">
+    <h2>Ready to Listen?</h2>
+    <p>Paste any YouTube, Instagram, or Reddit URL and watch the world light up. Your 2 million people are talking. ECHO makes you listen.</p>
+    <p style="margin-top: 30px; font-size: 18px; font-weight: 600;">ECHO — Hear Everything</p>
+  </div>
+</main>
+
+<footer class="footer" id="footer">
+  <div class="footer__top">
+
+    <div class="footer__brand">
+      <a href="/" class="footer__logo">
+        <img src="assets/logo.png" alt="" class="footer__logo-img" />
+        <span class="footer__logo-text">Echo</span>
+      </a>
+      <p class="footer__tagline">Hear Everything.</p>
+    </div>
+
+    <div class="footer__col">
+      <h4 class="footer__col-title">Features</h4>
+      <ul class="footer__col-list">
+        <li><a href="#" class="footer__col-link">The Globe</a></li>
+        <li><a href="#" class="footer__col-link">Commit Grid</a></li>
+        <li><a href="#" class="footer__col-link">The Mirror</a></li>
+        <li><a href="#" class="footer__col-link">The Shield</a></li>
+      </ul>
+    </div>
+
+    <div class="footer__col">
+      <h4 class="footer__col-title">Platforms</h4>
+      <ul class="footer__col-list">
+        <li><a href="#" class="footer__col-link">YouTube</a></li>
+        <li><a href="#" class="footer__col-link">Instagram</a></li>
+        <li><a href="#" class="footer__col-link">Twitter / X</a></li>
+        <li><a href="#" class="footer__col-link">Reddit</a></li>
+      </ul>
+    </div>
+
+    <div class="footer__col">
+      <h4 class="footer__col-title">Developers</h4>
+      <ul class="footer__col-list">
+        <li><a href="#" class="footer__col-link">API</a></li>
+        <li><a href="#" class="footer__col-link">Documentation</a></li>
+        <li><a href="#" class="footer__col-link">SDKs</a></li>
+      </ul>
+    </div>
+
+    <div class="footer__col">
+      <h4 class="footer__col-title">Company</h4>
+      <ul class="footer__col-list">
+        <li><a href="#" class="footer__col-link">About Echo</a></li>
+        <li><a href="#" class="footer__col-link">Team</a></li>
+        <li><a href="#" class="footer__col-link">How Echo Works</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer__bottom">
+    <p class="footer__copy">© <span id="footerYear"></span> Echo. All rights reserved.</p>
+  </div>
+
+</footer>
+
+<script src="components/navbar/navbar.js"></script>
+<script src="components/footer/footer.js"></script>
+
+</body>
+</html>

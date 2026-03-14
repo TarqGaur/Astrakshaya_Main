@@ -6,7 +6,6 @@
 
 :root {
   --bg:           #0a0a0a;
-  --nav-bg:       #0f0f0f;
   --drop-bg:      #141414;
   --border:       rgba(255,255,255,0.09);
   --border-drop:  rgba(255,255,255,0.11);
@@ -156,15 +155,6 @@ button { background: none; border: none; cursor: pointer; font: inherit; color: 
   flex-shrink: 0;
 }
 
-/* ── CTA ICON ─────────────────────────────────────────────── */
-.navbar__cta-icon {
-  width: 14px;
-  height: 14px;
-  display: block;
-  flex-shrink: 0;
-  filter: brightness(0);
-}
-
 /* ── CTA ──────────────────────────────────────────────────── */
 .navbar__cta {
   display: inline-flex;
@@ -241,7 +231,7 @@ button { background: none; border: none; cursor: pointer; font: inherit; color: 
 .dropdown__inner {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 36px 80px 40px 80px;
+  padding: 36px 80px 40px;
   display: flex;
   gap: 140px;
   align-items: flex-start;
@@ -274,7 +264,6 @@ button { background: none; border: none; cursor: pointer; font: inherit; color: 
   border: 1px solid rgba(255,255,255,0.14);
   border-radius: var(--r-pill);
   font-size: .8125rem;
-  font-weight: 400;
   color: var(--text-nav);
   background: rgba(255,255,255,0.04);
   transition: background .18s, color .18s, border-color .18s;
@@ -328,9 +317,7 @@ button { background: none; border: none; cursor: pointer; font: inherit; color: 
   pointer-events: none;
   transition: opacity .2s var(--ease);
 }
-.dropdown-overlay.is-visible {
-  opacity: 1;
-}
+.dropdown-overlay.is-visible { opacity: 1; }
 
 /* ── MOBILE MENU ──────────────────────────────────────────── */
 .mobile-menu {
@@ -400,9 +387,7 @@ button { background: none; border: none; cursor: pointer; font: inherit; color: 
   background: #0a0a0a;
 }
 
-.hero__content {
-  max-width: 780px;
-}
+.hero__content { max-width: 780px; }
 
 .hero__eyebrow {
   font-size: .72rem;
@@ -447,17 +432,6 @@ button { background: none; border: none; cursor: pointer; font: inherit; color: 
   color: var(--text);
   border-color: rgba(255,255,255,0.38);
   background: rgba(255,255,255,0.04);
-}
-
-.filler {
-  min-height: 80vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #080808;
-  border-top: 1px solid var(--border);
-  color: var(--text-dim);
-  font-size: .85rem;
 }
 
 /* ── RESPONSIVE ───────────────────────────────────────────── */
