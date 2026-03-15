@@ -20,8 +20,8 @@
       margin: 0;
       padding: 0;
       overflow-x: hidden;
-      background: #0a0a0a;
-      color: #dde0ea;
+      background: #000000;
+      color: #ffffff;
       font-family: 'Nunito Sans', sans-serif;
       display: flex;
       flex-direction: column;
@@ -31,16 +31,23 @@
     main {
       flex: 1;
       padding: 80px 40px;
-      max-width: 1200px;
+      max-width: 900px;
       margin: 0 auto;
       width: 100%;
+      background: #000000;
     }
 
     h1 {
-      font-size: 48px;
+      font-size: 52px;
       font-weight: 700;
       margin-bottom: 30px;
       color: #fff;
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    h1.animate {
+      animation: scrollZoomIn 0.8s ease-out forwards;
     }
 
     h2 {
@@ -48,13 +55,34 @@
       font-weight: 700;
       margin: 50px 0 20px;
       color: #fff;
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    h2.animate {
+      animation: scrollZoomIn 0.8s ease-out forwards;
+    }
+
+    h3 {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    h3.animate {
+      animation: scrollZoomIn 0.8s ease-out forwards;
     }
 
     p {
-      font-size: 16px;
-      line-height: 1.6;
-      color: #dde0ea;
-      margin-bottom: 20px;
+      font-size: 18px;
+      line-height: 1.8;
+      color: #ffffff;
+      margin-bottom: 30px;
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    p.animate {
+      animation: scrollZoomIn 0.8s ease-out forwards;
     }
 
     a {
@@ -63,6 +91,7 @@
     }
 
     a:hover {
+      color: #79c0ff;
       text-decoration: underline;
     }
 
@@ -72,6 +101,86 @@
 
     .footer {
       flex-shrink: 0;
+    }
+
+    @keyframes scrollZoomIn {
+      0% {
+        opacity: 0;
+        transform: scale(0.95) translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    ul {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    ul.animate {
+      animation: scrollZoomIn 0.8s ease-out forwards;
+    }
+
+    ol {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    ol.animate {
+      animation: scrollZoomIn 0.8s ease-out forwards;
+    }
+
+    li {
+      color: #ffffff;
+    }
+
+    .about-hero {
+      background: #000000;
+      padding: 120px 40px 80px;
+      text-align: center;
+      margin: 0 -40px 0 -40px;
+      width: calc(100% + 80px);
+    }
+
+    .about-hero h1 {
+      font-size: 52px;
+      font-weight: 700;
+      line-height: 1.2;
+      max-width: 900px;
+      margin: 0 auto 60px;
+      color: #ffffff;
+    }
+
+    .about-image {
+      width: 100%;
+      max-width: 900px;
+      border-radius: 16px;
+      margin: 0 auto 20px;
+      display: block;
+      opacity: 1;
+    }
+
+    .about-image.animate {
+      animation: scrollZoomIn 0.8s ease-out forwards;
+    }
+
+    .image-caption {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #b0b8c9;
+      margin-top: 20px;
+      margin-bottom: 40px;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+      opacity: 1;
+    }
+
+    .image-caption.animate {
+      animation: scrollZoomIn 0.8s ease-out forwards;
     }
   </style>
 </head>
@@ -89,7 +198,7 @@
       <ul class="navbar__list">
 
         <li class="navbar__item">
-          <a href="html/research.html" class="navbar__link">Features</a>
+          <a href="html/globe.html" class="navbar__link">Features</a>
         </li>
 
         <li class="navbar__item navbar__item--drop" data-drop="mission">
@@ -123,7 +232,7 @@
     </nav>
 
     <div class="navbar__right">
-      <a href="html/join.html" class="navbar__cta">Try Echo</a>
+      <a href="current.html" class="navbar__cta">Get Started</a>
       <button class="navbar__hamburger" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -154,7 +263,7 @@
       <div class="dropdown__info">
         <h3 class="dropdown__headline">Built by developers,<br>for developers</h3>
         <p class="dropdown__sub">Integrate Echo into your applications using our APIs and developer tools.</p>
-        <a href="html/community.html" class="dropdown__see-all">Developer resources</a>
+        <a href="doc.html" class="dropdown__see-all">Developer resources</a>
       </div>
       <ul class="dropdown__links">
         <li><a href="#" class="dropdown__link">REST API <span>›</span></a></li>
@@ -181,7 +290,7 @@
 
   <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
     <ul class="mobile-list">
-      <li><a href="html/research.html" class="mobile-link">Features</a></li>
+      <li><a href="html/globe.html" class="mobile-link">Features</a></li>
 
       <li class="mobile-group">
         <button class="mobile-link mobile-group__btn" aria-expanded="false">
@@ -227,7 +336,7 @@
       </li>
 
       <li class="mobile-cta-row">
-        <a href="html/join.html" class="navbar__cta">Try Echo</a>
+        <a href="current.html" class="navbar__cta">Get Started</a>
       </li>
     </ul>
   </div>
@@ -237,19 +346,16 @@
 <div class="dropdown-overlay" id="dropOverlay"></div>
 
 <main>
-  <div class="about-section">
-    <h1>ECHO — Hear Everything</h1>
-    <p style="font-size: 20px; font-weight: 600; margin-bottom: 40px;">World's First Audience Relationship Manager for Content Creators</p>
+  <div class="about-hero">
+    <h1>ECHO ~ Hear Everything</h1>
+    <img src="about.png" alt="Echo Platform Overview" class="about-image">
+    <p class="image-caption">Understanding audience sentiment across platforms by analyzing comments in real-time. Echo transforms raw feedback into visual intelligence that creators can act on immediately. From geographic sentiment mapping to emotional trend detection, every piece of audience data becomes actionable insight.</p>
   </div>
 
   <div class="about-section">
-    <p>This is ECHO — a revolutionary AI tool built for content creators. When creators post a video, 10,000 comments come in within 24 hours. But they only read 50, and guess about the rest. The next video underperforms. Why? Because there was no tool to understand real honest feedback. ECHO solves this problem.</p>
-  </div>
-
-  <div class="about-section">
-    <h2>The Problem Creators Face</h2>
+    <h2>About Echo</h2>
     <p>Every day 500 million comments are posted on YouTube, Instagram, and Reddit. This is the most honest feedback creators can get. But:</p>
-    <ul style="margin: 15px 0 20px 20px; color: #dde0ea;">
+    <ul style="margin: 15px 0 20px 20px; color: #ffffff;">
       <li>Scale Issue: Reading 10K comments manually is impossible</li>
       <li>Context Missing: A single comment doesn't tell you overall audience mood</li>
       <li>Geography Blind: Comments from India or US? You don't know</li>
@@ -262,6 +368,7 @@
   <div class="about-section">
     <h2>What ECHO Does</h2>
     <p>ECHO is not a traditional sentiment dashboard. It provides three cinematic experiences:</p>
+    <p>We believe that understanding your audience at scale should be beautiful, intuitive, and actionable. Most analytics tools throw spreadsheets at creators — rows of data with no context, no emotion, no story. ECHO transforms raw comments into visual narratives. You don't just see numbers; you see your audience's heartbeat across the globe in real time. Every sentiment becomes a visual, every trend becomes a pattern you can act on immediately.</p>
   </div>
 
   <div class="about-section">
@@ -274,6 +381,7 @@
       <li>Black pin = Abusive (Flagged automatically)</li>
     </ul>
     <p>Countries glow based on dominant sentiment. India 80% positive shows deep green glow. Brazil with a hate cluster shows red region glow. Your audience has a geography.</p>
+    <p>The Globe isn't just beautiful — it's strategically powerful. For the first time ever, creators can pinpoint exactly where their audience resonates most. A YouTuber discovers 40% of positive comments come from Southeast Asia, while North America shows mixed sentiment with an emerging hate cluster. This isn't just interesting; it's actionable. It tells you which markets love you, which ones are at risk, and where to focus your content strategy. Some creators will suddenly realize their comedy lands differently in India versus the US, or that a controversial topic sparked outrage in one region while acceptance in another. This geographic intelligence changes how creators think about their global audience.</p>
   </div>
 
   <div class="about-section">
@@ -287,12 +395,15 @@
       <li>Ice Blue Diamond = Viral moment</li>
     </ul>
     <p>Click any square to see all comments from that day. Your audience relationship, version controlled.</p>
+    <p>The Commit Grid is the long-term memory of your channel's health. Where the Globe shows you right now, the Grid shows you where you've been. Imagine scrolling back and seeing exactly when sentiment shifted. You uploaded a controversial video on March 15th—the square is bright red, comments spiking to 50% negative. But September 3rd shows ice blue—your most viral day ever. January had consistent grey squares—engagement was dying. This historical view reveals patterns you'd never spot in alerts. You'll see that every time you switch topics, sentiment drops. Or that your audience gets more emotional around certain times of year. Creators use this to version-control their audience relationship the same way developers track code quality. One swipe backwards and you can reconstruct what happened and why.</p>
   </div>
 
   <div class="about-section">
     <h3 style="font-size: 24px; margin: 30px 0 15px;">3. The Mirror + The Shield</h3>
     <p><strong>The Mirror:</strong> An AI-written honest paragraph from your audience's voice. "Your audience loves your editing style but Tier 2 cities feel disconnected since October."</p>
     <p><strong>The Shield:</strong> Abusive comments go to RED ZONE, create offender profile cards, generate 1-click Cybercell reports, and export legal PDF evidence.</p>
+    <p>The Mirror is something no other tool offers: a synthesis of raw audience emotion written in natural language. Instead of charts, you get AI that reads all 10,000 comments and writes a paragraph as if your audience is speaking directly to you. And it's honest. You'll never get "your audience is happy" — you get "they love your authenticity but they're frustrated with upload frequency and they've noticed you're imitating creators they already watch." This kind of feedback, synthesized from thousands of voices, is what data scientists spend months extracting. ECHO gives it to you instantly.</p>
+    <p>The Shield is the safety layer creators desperately need but never had. Abusive comments are isolated, their senders are profiled (location, account age, history), and you get a legal-ready PDF that can be submitted to cyber police authorities. A creator being harassed can now generate evidence instantly — no need to manually screenshot 50 comments and compile a document. One click, they have their case ready.</p>
   </div>
 
   <div class="about-section">
@@ -324,6 +435,9 @@
       <li>Protect yourself: Abuser's full profile plus 1-click legal action</li>
       <li>Audience speaks directly: Mirror gives you honest AI-written feedback</li>
     </ul>
+    <p>Most creators operate in a feedback vacuum. They upload, wait for metrics, and guess. They can't tell if their audience loved a video or tolerated it. They don't know which geographic region is growing and which is declining. They can't distinguish between constructive criticism and toxic abuse. The result: they make decisions based on intuition and luck, not insight. Video performance becomes a coin flip.</p>
+    <p>ECHO closes this gap. When a creator uploads a video, within minutes they watch it unfold on the Globe. Comments lighting up in different colors across different countries. Patterns emerging instantly. They see that Australia loved it but UK is mixed. That their emotional raw-vulnerability content resonates in Tier 2 Indian cities but bores premium metros. That a specific topic always triggers a hate spike. With this knowledge, they make the next video with precision. They know which content styles work where, what topics resonate with whom, and where their growth lies.</p>
+    <p>For growing creators especially, this is transformative. A channel stuck at 100K subscribers is usually stuck not because content is bad, but because they haven't found their true audience positioning. ECHO reveals it. Suddenly they realize: "Young women in Southeast Asia love my dance videos but I'm uploading education content that appeals to nobody." Decision made: pivot strategy, target the winning demographic, grow 10x.</p>
   </div>
 
   <div class="about-section">
@@ -339,30 +453,42 @@
     <p>This granularity reveals true audience emotion.</p>
   </div>
 
-  <div class="about-section">
-    <h2>Brand Identity</h2>
-    <p><strong>Primary Color:</strong> Deep Red #8B1A1A</p>
-    <p><strong>Background:</strong> Off-white #F5F2EE</p>
-    <p><strong>Accents:</strong></p>
-    <ul style="margin: 15px 0 20px 20px; color: #dde0ea;">
-      <li>Green #39D353 (Positive)</li>
-      <li>Red #FF4444 (Negative)</li>
-      <li>Yellow #F0A500 (Emotional)</li>
-      <li>Ice Blue #B9F2FF (Viral)</li>
-    </ul>
-    <p><strong>Logo:</strong> Concentric sound waves forming a globe shape</p>
-    <p><strong>Tagline:</strong> "Hear Everything."</p>
-  </div>
 
   <div class="about-section">
     <h2>Competitive Edge</h2>
     <p>ECHO wins because people emotionally connect when they see India glowing green or abusive black pins clustering. We provide the highest granularity in sentiment analysis, the most immersive visualization, and the only legal protection system for creators.</p>
+    <p>Several tools exist in the comment analysis space. But none combine these elements:</p>
+    <ul style="margin: 15px 0 20px 20px; color: #dde0ea;">
+      <li><strong>Geospatial Sentiment:</strong> No other tool maps comments by location and sentiment simultaneously. No one else shows you the Globe.</li>
+      <li><strong>4-Class + Abuse System:</strong> Competitors use basic positive/negative/neutral. We understand emotional nuance and separate abuse entirely.</li>
+      <li><strong>Historical Pattern Recognition:</strong> The Commit Grid is unique. No one else gives you a year-long view of your audience relationship.</li>
+      <li><strong>AI Mirror Summary:</strong> No other tool synthesizes comments into natural language insights. You don't get charts, you get a paragraph from your audience.</li>
+      <li><strong>Legal Shield:</strong> We're the only tool that generates cyber-harassment reports for law enforcement. Creators finally have documentation.</li>
+    </ul>
+    <p>ECHO doesn't just collect data—it tells stories. And humans connect with stories, not spreadsheets.</p>
+  </div>
+
+  <div class="about-section">
+    <h2>Our Vision</h2>
+    <p>The creator economy is the future of media. By 2030, more people will make income from content creation than from traditional employment. But the tools available to creators haven't evolved. Most monetization platforms still treat creators as content machines, not as businesses requiring deep audience insight.</p>
+    <p>We believe creators deserve better. They deserve tools that respect their intelligence, tools that give them real power over their audience relationships, and tools that protect them from harassment. ECHO exists because creators have been asking for this for years and no one delivered.</p>
+    <p>Our vision is a world where every creator, from 1K followers to 10 million, has enterprise-grade audience intelligence at their fingertips. Where a kid in Mumbai can understand their global audience as well as a Netflix executive. Where toxic actors are identified and reported instantly. Where every creator makes data-driven decisions about their content strategy because the data is finally presented in a way they can understand and act on.</p>
+    <p>In 5 years, ECHO will be the operating system that sits between creators and their audience. Not just analyzing comments, but helping creators build deeper relationships with their viewers, monetize more effectively, and grow sustainably.</p>
+  </div>
+
+  <div class="about-section">
+    <h2>Built by Creators, for Creators</h2>
+    <p>ECHO was born from frustration. Our founders spent years watching talented creators struggle with decision-making because they lacked insights. A YouTuber with 500K subscribers couldn't tell which content styles worked where. A Twitch streamer didn't know if harassment was increasing. A TikTok creator made content decisions by feel, not by data.</p>
+    <p>We know this world because we live in it. Our team includes creators, developers, and AI researchers who've personally dealt with the problems ECHO solves. We built the tool we wished we had.</p>
   </div>
 
   <div class="about-section">
     <h2>Ready to Listen?</h2>
     <p>Paste any YouTube, Instagram, or Reddit URL and watch the world light up. Your 2 million people are talking. ECHO makes you listen.</p>
-    <p style="margin-top: 30px; font-size: 18px; font-weight: 600;">ECHO — Hear Everything</p>
+    <p>Your audience is speaking. Every comment is a vote, a preference, a desire, a complaint, a moment of vulnerability. For too long, creators have had to guess what all those voices were saying. The noise was too loud, the scale too massive, the tools too primitive.</p>
+    <p>ECHO changes that. In 30 seconds, you go from "I have 10K comments but I don't know what they mean" to seeing the full picture. Your biggest fans, your growing detractors, your silent segments, your geographic strongholds, your vulnerability. All at a glance. All actionable.</p>
+    <p>This is what happens when creator intelligence meets beautiful design. When data science respects storytelling. When technology amplifies human judgment instead of replacing it.</p>
+    <p style="margin-top: 40px; font-size: 18px; font-weight: 600; color: #fff;">ECHO — Hear Everything. Know More. Grow Faster.</p>
   </div>
 </main>
 
@@ -425,6 +551,42 @@
 
 <script src="components/navbar/navbar.js"></script>
 <script src="components/footer/footer.js"></script>
+
+<script>
+const observerOptions = {
+  threshold: 0.1,
+  rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const delay = Array.from(entry.target.parentElement?.children || []).indexOf(entry.target) * 0.1;
+      entry.target.style.animationDelay = delay + 's';
+      entry.target.classList.add('animate');
+      observer.unobserve(entry.target);
+    }
+  });
+}, observerOptions);
+
+document.querySelectorAll('h1, h2, h3, p, ul, ol, .about-image, .image-caption').forEach(el => {
+  observer.observe(el);
+});
+
+window.addEventListener('scroll', () => {
+  document.querySelectorAll('h1, h2, h3, p, ul, ol, .about-image, .image-caption').forEach(el => {
+    if (!el.classList.contains('animate')) {
+      const rect = el.getBoundingClientRect();
+      const isVisible = rect.top < window.innerHeight * 0.85 && rect.bottom > 0;
+      if (isVisible) {
+        const delay = Array.from(el.parentElement?.children || []).indexOf(el) * 0.1;
+        el.style.animationDelay = delay + 's';
+        el.classList.add('animate');
+      }
+    }
+  });
+});
+</script>
 
 </body>
 </html>
