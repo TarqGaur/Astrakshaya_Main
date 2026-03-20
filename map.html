@@ -1,131 +1,530 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Global Sentiment Map</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Astrakshaya</title>
+  <link rel="stylesheet" href="components/navbar/navbar.css" />
+  <link rel="stylesheet" href="components/footer/footer.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,300;6..12,400;6..12,500;6..12,600&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #000000 100%);
+      color: #e8e4dc;
+      font-family: 'Nunito Sans', sans-serif;
+    }
 
-<style>
+    /* ── starfield ── */
+    canvas#stars {
+      position: fixed; inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.6;
+    }
 
-body{
-margin:0;
-background:#0d0d12;
-font-family:Arial;
-color:white;
-}
+    /* ── page wrapper ── */
+    main {
+      position: relative;
+      z-index: 1;
+      min-height: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 5vh 5vw;
+      background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #000000 100%);
+    }
 
-#map{
-height:100vh;
-width:100%;
-}
+    .contact-grid {
+      width: 100%;
+      max-width: 1100px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.07);
+      animation: fadeUp 1s ease both;
+    }
 
-.title{
-position:absolute;
-z-index:999;
-top:20px;
-left:50%;
-transform:translateX(-50%);
-background:rgba(0,0,0,0.6);
-padding:10px 20px;
-border-radius:8px;
-font-size:20px;
-}
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
 
-</style>
+    .card {
+      background: linear-gradient(135deg, #0a0a0a 0%, #151515 100%);
+      padding: 3.5rem 3rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+    }
+    .card:first-child { animation-delay: 0.1s; }
+    .card:nth-child(2) { animation-delay: 0.25s; }
+    .card:nth-child(3) { animation-delay: 0.35s; }
+    .card.full {
+      grid-column: 1 / -1;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 4rem;
+      animation-delay: 0.4s;
+    }
 
+    .card-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #c8a96e;
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      font-weight: 500;
+    }
+    .card-label::before {
+      content: '';
+      display: inline-block;
+      width: 18px; height: 1px;
+      background: #c8a96e;
+    }
+
+    .address-block h2 {
+      font-weight: 600;
+      font-size: 1.8rem;
+      line-height: 1.35;
+      color: #e8e4dc;
+    }
+
+    .address-lines {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+    .address-lines span {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: #a09890;
+      letter-spacing: 0.02em;
+    }
+    .address-lines span.highlight {
+      color: #e8e4dc;
+      font-weight: 500;
+    }
+
+    .divider {
+      width: 32px; height: 1px;
+      background: #7a6340;
+    }
+
+    /* contact info items */
+    .info-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+    .info-item .key {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #6b6660;
+      font-weight: 500;
+    }
+    .info-item .val {
+      font-size: 1rem;
+      color: #e8e4dc;
+      letter-spacing: 0.02em;
+    }
+
+    /* map placeholder */
+    .map-zone {
+      flex: 1;
+      min-height: 200px;
+      background: #080a0f;
+      border: 1px solid rgba(255,255,255,0.07);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .map-zone svg {
+      opacity: 0.12;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+    }
+    .map-pin {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      animation: pulse 2.5s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-5px); }
+    }
+    .map-pin svg { opacity: 1; width: 28px; height: 28px; }
+    .map-pin span {
+      font-size: 0.55rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #c8a96e;
+    }
+
+    .coords {
+      font-size: 0.7rem;
+      color: #6b6660;
+      letter-spacing: 0.08em;
+      margin-top: auto;
+    }
+
+    /* ── responsive ── */
+    @media (max-width: 720px) {
+      .contact-grid { grid-template-columns: 1fr; }
+      .card.full { flex-direction: column; gap: 2rem; }
+      main { padding: 3vh 5vw; }
+    }
+  </style>
 </head>
-
 <body>
 
-<div class="title">Global Love vs Hate Map</div>
-<div id="map"></div>
+<canvas id="stars"></canvas>
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<header class="navbar" id="navbar">
+  <div class="navbar__bar">
+
+    <a href="/" class="navbar__logo" aria-label="Astrakshaya">
+      <img src="assets/logo.png" alt="" class="navbar__logo-img" />
+      <span class="navbar__logo-text">Astrakshaya</span>
+    </a>
+
+    <nav class="navbar__nav" aria-label="Main navigation">
+      <ul class="navbar__list">
+
+        <li class="navbar__item">
+          <a href="research.html" class="navbar__link">Research</a>
+        </li>
+
+        <li class="navbar__item navbar__item--drop" data-drop="mission">
+          <button class="navbar__link navbar__trigger" aria-expanded="false">
+            Projects
+            <svg class="navbar__chevron" width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </li>
+
+        <li class="navbar__item navbar__item--drop" data-drop="community">
+          <button class="navbar__link navbar__trigger" aria-expanded="false">
+            Developers 
+            <svg class="navbar__chevron" width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </li>
+
+        <li class="navbar__item navbar__item--drop" data-drop="resources">
+          <button class="navbar__link navbar__trigger" aria-expanded="false">
+            About 
+            <svg class="navbar__chevron" width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </li>
+
+      </ul>
+    </nav>
+
+    <div class="navbar__right">
+      <a href="commingsoon.html" class="navbar__cta">Get Started</a>
+      <button class="navbar__hamburger" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+  </div>
+
+  <!-- Dropdowns -->
+  <div class="dropdown" id="drop-mission">
+    <div class="dropdown__inner">
+      <div class="dropdown__info">
+        <h3 class="dropdown__headline">Pioneering aerospace<br>research & innovation</h3>
+        <p class="dropdown__sub">Astrakshaya leads cutting-edge projects across propulsion, satellite systems, and deep space exploration.</p>
+        <a href="html/mission.html" class="dropdown__see-all">See all projects</a>
+      </div>
+      <ul class="dropdown__links">
+        <li><a href="commingsoon.html" class="dropdown__link">Propulsion Systems <span>›</span></a></li>
+        <li><a href="commingsoon.html" class="dropdown__link">Satellite Technology <span>›</span></a></li>
+        <li><a href="commingsoon.html" class="dropdown__link">Deep Space Missions <span>›</span></a></li>
+        <li><a href="commingsoon.html" class="dropdown__link">Atmospheric Research <span>›</span></a></li>
+        <li><a href="commingsoon.html" class="dropdown__link">Launch Vehicles <span>›</span></a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="dropdown" id="drop-community">
+    <div class="dropdown__inner">
+      <div class="dropdown__info">
+        <h3 class="dropdown__headline">Built by developers,<br>for developers</h3>
+        <p class="dropdown__sub">Integrate Astrakshaya tools into your applications using our APIs and developer resources.</p>
+        <a href="commingsoon.html" class="dropdown__see-all">Developer resources</a>
+      </div>
+      <ul class="dropdown__links">
+        <li><a href="commingsoon.html" class="dropdown__link">API <span>›</span></a></li>
+        <li><a href="commingsoon.html" class="dropdown__link">Documentation <span>›</span></a></li>
+        <li><a href="commingsoon.html" class="dropdown__link">SDKs & Tools <span>›</span></a></li>
+        <li><a href="commingsoon.html" class="dropdown__link">Open Source <span>›</span></a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="dropdown" id="drop-resources">
+    <div class="dropdown__inner">
+      <div class="dropdown__info">
+        <h3 class="dropdown__headline">Learn more about<br>Astrakshaya and its mission</h3>
+      </div>
+      <ul class="dropdown__links">
+        <li><a href="about.html" class="dropdown__link">About Astrakshaya <span>›</span></a></li>
+        <li><a href="about.html" class="dropdown__link">Team <span>›</span></a></li>
+        <li><a href="https://www.cittumkur.org/skyhack/" class="dropdown__link" target="_blank">Hackathons <span>›</span></a></li>
+        <li><a href="about.html" class="dropdown__link">Contact <span>›</span></a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <ul class="mobile-list">
+      <li><a href="research.html" class="mobile-link">Research</a></li>
+
+      <li class="mobile-group">
+        <button class="mobile-link mobile-group__btn" aria-expanded="false">
+          Projects
+          <svg class="navbar__chevron" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <ul class="mobile-sub">
+          <li><a href="commingsoon.html" class="mobile-sublink">Propulsion Systems</a></li>
+          <li><a href="commingsoon.html" class="mobile-sublink">Satellite Technology</a></li>
+          <li><a href="commingsoon.html" class="mobile-sublink">Deep Space Missions</a></li>
+          <li><a href="commingsoon.html" class="mobile-sublink">Atmospheric Research</a></li>
+        </ul>
+      </li>
+
+      <li class="mobile-group">
+        <button class="mobile-link mobile-group__btn" aria-expanded="false">
+          Developers
+          <svg class="navbar__chevron" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <ul class="mobile-sub">
+          <li><a href="commingsoon.html" class="mobile-sublink">API</a></li>
+          <li><a href="commingsoon.html" class="mobile-sublink">Documentation</a></li>
+          <li><a href="commingsoon.html" class="mobile-sublink">Open Source</a></li>
+        </ul>
+      </li>
+
+      <li class="mobile-group">
+        <button class="mobile-link mobile-group__btn" aria-expanded="false">
+          About
+          <svg class="navbar__chevron" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <ul class="mobile-sub">
+          <li><a href="about.html" class="mobile-sublink">About Astrakshaya</a></li>
+          <li><a href="about.html" class="mobile-sublink">Team</a></li>
+          <li><a href="https://www.cittumkur.org/skyhack/" class="mobile-sublink" target="_blank">Hackathons</a></li>
+        </ul>
+      </li>
+
+      <li class="mobile-cta-row">
+        <a href="commingsoon.html" class="navbar__cta">Get Started</a>
+      </li>
+    </ul>
+  </div>
+
+</header>
+
+<div class="dropdown-overlay" id="dropOverlay"></div>
+
+<main>
+  <div class="contact-grid">
+
+    <!-- HQ Address + Map -->
+    <div class="card full">
+      <div style="flex:1; display:flex; flex-direction:column; gap:1.8rem;">
+        <span class="card-label">Headquarters</span>
+        <div class="address-block">
+          <h2>Primary<br>Operations Base</h2>
+        </div>
+        <div class="divider"></div>
+        <div class="address-lines">
+          <span class="highlight">Basaveshwara Nilaya</span>
+          <span>9th B Cross, 1st Main Road</span>
+          <span>Hanumanthapura</span>
+          <span>Bangalore Tumkur</span>
+          <span>Karnataka — 572 103</span>
+          <span>India</span>
+        </div>
+      </div>
+
+      <div class="map-zone" style="padding:0; border:1px solid rgba(255,255,255,0.07); overflow:hidden;">
+        <iframe
+          src="https://www.google.com/maps?q=13.339039,77.120543&z=16&output=embed"
+          width="100%" height="100%"
+          style="border:0; filter: invert(90%) hue-rotate(180deg) saturate(0.4) brightness(0.75); min-height:240px;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
+
+    <!-- Contact -->
+    <div class="card">
+      <span class="card-label">Get in Touch</span>
+      <div class="info-item">
+        <span class="key">General Enquiries</span>
+        <span class="val">contact@astrakshaya.in</span>
+      </div>
+      <div class="info-item">
+        <span class="key">Media & Press</span>
+        <span class="val">press@astrakshaya.in</span>
+      </div>
+      <div class="info-item">
+        <span class="key">Working Hours</span>
+        <span class="val">Mon – Sat, 08:00 – 19:00 IST</span>
+      </div>
+    </div>
+
+    <!-- Second Address -->
+    <div class="card">
+      <span class="card-label">Regional Office</span>
+      <div class="address-block">
+        <h2>Varanasi<br>Operations</h2>
+      </div>
+      <div class="divider"></div>
+      <div class="address-lines">
+        <span class="highlight">Surya Sarovar</span>
+        <span>416 A BLW</span>
+        <span>Near Police Chowki</span>
+        <span>Varanasi</span>
+        <span>Uttar Pradesh — 221 001</span>
+        <span>India</span>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer class="footer" id="footer">
+  <div class="footer__top">
+
+    <div class="footer__brand">
+      <a href="/" class="footer__logo">
+        <img src="assets/logo.png" alt="" class="footer__logo-img" />
+        <span class="footer__logo-text">Astrakshaya</span>
+      </a>
+      <p class="footer__tagline">Beyond the Sky.</p>
+    </div>
+
+    <div class="footer__col">
+      <h4 class="footer__col-title">Research</h4>
+      <ul class="footer__col-list">
+        <li><a href="index.html" class="footer__col-link">Home</a></li>
+        <li><a href="research.html" class="footer__col-link">Research</a></li>
+        <li><a href="Projects.html" class="footer__col-link">Projects</a></li>
+        <li><a href="Address.html" class="footer__col-link">Address</a></li>
+      </ul>
+    </div>
+
+    <div class="footer__col">
+      <h4 class="footer__col-title">Projects</h4>
+      <ul class="footer__col-list">
+        <li><a href="commingsoon.html" class="footer__col-link">Propulsion Systems</a></li>
+        <li><a href="commingsoon.html" class="footer__col-link">Satellite Technology</a></li>
+        <li><a href="commingsoon.html" class="footer__col-link">Deep Space Missions</a></li>
+        <li><a href="commingsoon.html" class="footer__col-link">Atmospheric Research</a></li>
+      </ul>
+    </div>
+
+    <div class="footer__col">
+      <h4 class="footer__col-title">Developers</h4>
+      <ul class="footer__col-list">
+        <li><a href="commingsoon.html" class="footer__col-link">API</a></li>
+        <li><a href="commingsoon.html" class="footer__col-link">Documentation</a></li>
+        <li><a href="commingsoon.html" class="footer__col-link">SDKs</a></li>
+      </ul>
+    </div>
+
+    <div class="footer__col">
+      <h4 class="footer__col-title">Company</h4>
+      <ul class="footer__col-list">
+        <li><a href="about.html" class="footer__col-link">About Astrakshaya</a></li>
+        <li><a href="about.html" class="footer__col-link">Team</a></li>
+        <li><a href="https://www.cittumkur.org/skyhack/" class="footer__col-link" target="_blank">Hackathons</a></li>
+        <li><a href="about.html" class="footer__col-link">Contact</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer__bottom">
+    <p class="footer__copy">© <span id="footerYear"></span> Astrakshaya. All rights reserved.</p>
+  </div>
+
+</footer>
+
+<script src="components/navbar/navbar.js"></script>
+<script src="components/footer/footer.js"></script>
 
 <script>
+  // Starfield
+  const canvas = document.getElementById('stars');
+  const ctx = canvas.getContext('2d');
 
-// JSON DATA (example)
-const sentimentData = [
-{country:"India", love:120, hate:20},
-{country:"United States of America", love:50, hate:80},
-{country:"Brazil", love:90, hate:10},
-{country:"Russia", love:20, hate:70},
-{country:"Australia", love:60, hate:10}
-];
+  function resize() {
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
 
-// create map
-var map = L.map('map').setView([20,0],2);
+  const STARS = Array.from({ length: 160 }, () => ({
+    x: Math.random(),
+    y: Math.random(),
+    r: Math.random() * 1.2 + 0.2,
+    a: Math.random(),
+    s: (Math.random() * 0.3 + 0.1) * (Math.random() < 0.5 ? 1 : -1)
+  }));
 
-// map tiles
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
-maxZoom:18
-}).addTo(map);
-
-// load world countries geojson
-fetch("https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json")
-.then(res => res.json())
-.then(geoData => {
-
-L.geoJSON(geoData,{
-
-style:function(feature){
-
-let countryName = feature.properties.name;
-
-let data = sentimentData.find(
-c => c.country === countryName
-);
-
-if(!data){
-return {
-fillColor:"#555",
-weight:1,
-color:"#222",
-fillOpacity:0.4
-}
-}
-
-let score = data.love - data.hate;
-
-let color="yellow";
-
-if(score>30) color="green";
-if(score<-30) color="red";
-
-return{
-fillColor:color,
-weight:1,
-color:"#111",
-fillOpacity:0.7
-};
-
-},
-
-onEachFeature:function(feature,layer){
-
-let countryName = feature.properties.name;
-
-let data = sentimentData.find(
-c => c.country === countryName
-);
-
-if(data){
-
-layer.bindPopup(
-"<b>"+countryName+"</b><br>"+
-"Love: "+data.love+"<br>"+
-"Hate: "+data.hate
-);
-
-}
-
-}
-
-}).addTo(map);
-
-});
-
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    STARS.forEach(s => {
+      s.a += s.s * 0.004;
+      if (s.a > 1) s.a = 1, s.s *= -1;
+      if (s.a < 0) s.a = 0, s.s *= -1;
+      ctx.beginPath();
+      ctx.arc(s.x * canvas.width, s.y * canvas.height, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(200,169,110,${s.a})`;
+      ctx.fill();
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
 </script>
 
 </body>
