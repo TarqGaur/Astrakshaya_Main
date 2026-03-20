@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Astrakshaya</title>
+  <title>Contact — Astrakshaya</title>
   <link rel="stylesheet" href="components/navbar/navbar.css" />
   <link rel="stylesheet" href="components/footer/footer.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -20,101 +20,404 @@
       margin: 0;
       padding: 0;
       overflow-x: hidden;
+      background: #0a0a0a;
+      color: #ffffff;
+      font-family: 'Nunito Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     }
 
-    .wave-section {
+    /* ── HERO ── */
+    .hero {
       width: 100%;
       height: 100vh;
-      background: #0a0a0a;
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1f 50%, #0a0a0a 100%);
       display: flex;
       align-items: center;
       justify-content: center;
+      text-align: center;
+      position: relative;
       overflow: hidden;
     }
 
-    #waveCanvas {
-      display: block;
-      transform: scale(1);
-      transform-origin: center;
-      transition: transform 0.1s ease-out;
-    }
-
-    .video-bar {
-      width: 100%;
-      margin: 0;
-      padding: 0;
-      background: #0a0a0a;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-    }
-
-    .video-bar__container {
-      width: 100%;
-      margin: 0;
-      padding: 0;
-      position: relative;
-    }
-
-    .video-bar video {
-      width: 100%;
-      height: auto;
-      display: block;
-      margin: 0;
-      padding: 0;
-    }
-
-    .echo-section {
-      width: 100%;
-      height: auto;
-      min-height: auto;
-      background: #0a0a0a;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0;
-      padding: 0;
-    }
-
-    #echoCanvas {
-      display: block;
-      width: 100%;
-      height: auto;
-      margin: 0;
-      padding: 0;
-      max-height: 500px;
-    }
-
-    .sound-button {
+    .hero::before {
+      content: '';
       position: absolute;
-      bottom: 20px;
-      right: 20px;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(10,158,255,0.15) 0%, transparent 70%);
+      border-radius: 50%;
+      top: -200px;
+      left: -200px;
+      animation: float 8s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(50px, 50px); }
+    }
+
+    .hero__content {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+      padding: 0 30px;
+    }
+
+    .hero__eyebrow {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #0a9eff;
+      margin-bottom: 20px;
+      animation: slideDown 0.8s ease-out;
+    }
+
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero__title {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 600;
+      line-height: 1.2;
+      margin-bottom: 30px;
+      background: linear-gradient(135deg, #ffffff, #b0b0b8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: slideDown 0.8s ease-out 0.1s both;
+    }
+
+    .hero__subtitle {
+      font-size: 1.15rem;
+      font-weight: 300;
+      color: #b0b0b8;
+      margin-bottom: 40px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      animation: slideDown 0.8s ease-out 0.2s both;
+    }
+
+    .hero__btns {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: slideDown 0.8s ease-out 0.3s both;
+    }
+
+    .hero__cta {
+      padding: 12px 28px;
+      background: #0a9eff;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+      display: inline-block;
+    }
+
+    .hero__cta:hover {
+      background: #2bb0ff;
+      transform: translateY(-2px);
+    }
+
+    .hero__btn-ghost {
+      padding: 12px 28px;
+      background: transparent;
+      color: #ffffff;
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+      display: inline-block;
+    }
+
+    .hero__btn-ghost:hover {
+      border-color: #0a9eff;
+      color: #0a9eff;
+    }
+
+    /* ── SECTION ── */
+    .section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 80px 40px;
+    }
+
+    .section__label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #808088;
+      margin-bottom: 40px;
+    }
+
+    .section__title {
+      font-size: 2.5rem;
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: #ffffff;
+    }
+
+    .section__subtitle {
+      font-size: 1.1rem;
+      color: #b0b0b8;
+      margin-bottom: 60px;
+      max-width: 700px;
+    }
+
+    /* ── OFFICES GRID ── */
+    .offices-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+    }
+
+    .office-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+      backdrop-filter: blur(10px);
+    }
+
+    .office-card:hover {
+      transform: translateY(-8px);
+      border-color: #0a9eff;
+      box-shadow: 0 20px 40px rgba(10,158,255,0.1);
+    }
+
+    .office-map {
+      height: 280px;
+      background: linear-gradient(135deg, #1a1a1f 0%, #252530 100%);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .office-map iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+      filter: invert(0.9) hue-rotate(200deg) saturate(1.2) brightness(0.95);
+    }
+
+    .office-info {
+      padding: 35px 30px;
+    }
+
+    .office-badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #0a9eff;
+      background: rgba(10,158,255,0.15);
+      padding: 6px 12px;
+      border-radius: 100px;
+      margin-bottom: 15px;
+      border: 1px solid rgba(10,158,255,0.3);
+    }
+
+    .office-info h3 {
+      font-size: 1.35rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #ffffff;
+    }
+
+    .office-info .building {
+      font-size: 0.95rem;
+      color: #b0b0b8;
+      margin-bottom: 12px;
+    }
+
+    .office-info address {
+      font-style: normal;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: #b0b0b8;
+      margin-bottom: 25px;
+    }
+
+    .office-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      flex: 1;
+      min-width: 140px;
+      padding: 10px 16px;
+      background: linear-gradient(135deg, #0a9eff, #2bb0ff);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+      box-shadow: 0 4px 12px rgba(10,158,255,0.25);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(10,158,255,0.35);
+    }
+
+    .btn-secondary {
+      flex: 1;
+      min-width: 140px;
+      padding: 10px 16px;
+      background: rgba(255,255,255,0.05);
+      color: #ffffff;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: #0a9eff;
+      color: #0a9eff;
+    }
+
+    /* ── CONTACT INFO SECTION ── */
+    .contact-info {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 60px 40px;
+      margin-top: 80px;
+    }
+
+    .contact-info h3 {
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin-bottom: 50px;
+      text-align: center;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+    }
+
+    .info-card {
+      text-align: center;
+      transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    .info-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .info-card-icon {
       width: 50px;
       height: 50px;
-      background: rgba(0, 0, 0, 0.6);
-      border: none;
-      border-radius: 50%;
-      color: white;
-      cursor: pointer;
+      background: rgba(10,158,255,0.15);
+      border: 1px solid rgba(10,158,255,0.3);
+      border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 24px;
-      z-index: 10;
-      transition: background 0.3s ease;
+      margin: 0 auto 20px;
+      color: #0a9eff;
+      transition: all 0.3s;
     }
 
-    .sound-button:hover {
-      background: rgba(0, 0, 0, 0.8);
+    .info-card:hover .info-card-icon {
+      transform: rotate(10deg) scale(1.1);
+      background: rgba(10,158,255,0.25);
+    }
+
+    .info-card h4 {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #808088;
+      margin-bottom: 10px;
+    }
+
+    .info-card p, .info-card a {
+      font-size: 1rem;
+      font-weight: 500;
+      color: #ffffff;
+      line-height: 1.6;
+    }
+
+    .info-card a {
+      color: #0a9eff;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .info-card a:hover {
+      color: #2bb0ff;
+      text-decoration: underline;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .hero {
+        height: auto;
+        padding: 100px 20px;
+      }
+
+      .section {
+        padding: 60px 20px;
+      }
+
+      .section__title {
+        font-size: 1.8rem;
+      }
+
+      .hero__btns {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .offices-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .contact-info {
+        padding: 40px 20px;
+      }
+
+      .info-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
     }
   </style>
 </head>
 <body>
 
+<!-- NAVBAR -->
 <header class="navbar" id="navbar">
   <div class="navbar__bar">
-
     <a href="/" class="navbar__logo" aria-label="Astrakshaya">
       <img src="assets/logo.png" alt="" class="navbar__logo-img" />
       <span class="navbar__logo-text">Astrakshaya</span>
@@ -122,11 +425,9 @@
 
     <nav class="navbar__nav" aria-label="Main navigation">
       <ul class="navbar__list">
-
         <li class="navbar__item">
           <a href="research.html" class="navbar__link">Research</a>
         </li>
-
         <li class="navbar__item navbar__item--drop" data-drop="mission">
           <button class="navbar__link navbar__trigger" aria-expanded="false">
             Projects
@@ -135,7 +436,6 @@
             </svg>
           </button>
         </li>
-
         <li class="navbar__item navbar__item--drop" data-drop="community">
           <button class="navbar__link navbar__trigger" aria-expanded="false">
             Developers 
@@ -144,7 +444,6 @@
             </svg>
           </button>
         </li>
-
         <li class="navbar__item navbar__item--drop" data-drop="resources">
           <button class="navbar__link navbar__trigger" aria-expanded="false">
             About 
@@ -153,7 +452,6 @@
             </svg>
           </button>
         </li>
-
       </ul>
     </nav>
 
@@ -163,7 +461,6 @@
         <span></span><span></span><span></span>
       </button>
     </div>
-
   </div>
 
   <!-- Dropdowns -->
@@ -208,11 +505,8 @@
       <ul class="dropdown__links">
         <li><a href="about.html" class="dropdown__link">About Astrakshaya <span>›</span></a></li>
         <li><a href="about.html" class="dropdown__link">Team <span>›</span></a></li>
-<li>
-  <a href="https://www.cittumkur.org/skyhack/" class="footer__col-link" target="_blank">
-    Hackathons
-  </a>
-</li>            <li><a href="about.html" class="dropdown__link">Contact <span>›</span></a></li>
+        <li><a href="https://www.cittumkur.org/skyhack/" class="dropdown__link" target="_blank">Hackathons <span>›</span></a></li>
+        <li><a href="contact.html" class="dropdown__link">Contact <span>›</span></a></li>
       </ul>
     </div>
   </div>
@@ -220,11 +514,10 @@
   <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
     <ul class="mobile-list">
       <li><a href="research.html" class="mobile-link">Research</a></li>
-
       <li class="mobile-group">
         <button class="mobile-link mobile-group__btn" aria-expanded="false">
           Projects
-          <svg class="navbar__chevron" width="16" height="16" viewBox="0 n0 16 16" fill="none">
+          <svg class="navbar__chevron" width="16" height="16" viewBox="0 0 16 16" fill="none">
             <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </button>
@@ -235,7 +528,6 @@
           <li><a href="#" class="mobile-sublink">Atmospheric Research</a></li>
         </ul>
       </li>
-
       <li class="mobile-group">
         <button class="mobile-link mobile-group__btn" aria-expanded="false">
           Developers
@@ -249,7 +541,6 @@
           <li><a href="commingsoon.html" class="mobile-sublink">Open Source</a></li>
         </ul>
       </li>
-
       <li class="mobile-group">
         <button class="mobile-link mobile-group__btn" aria-expanded="false">
           About
@@ -260,65 +551,124 @@
         <ul class="mobile-sub">
           <li><a href="about.html" class="mobile-sublink">About Astrakshaya</a></li>
           <li><a href="about.html" class="mobile-sublink">Team</a></li>
-<li>
-  <a href="https://www.cittumkur.org/skyhack/" class="footer__col-link" target="_blank">
-    Hackathons
-  </a>
-</li>            </ul>
+          <li><a href="https://www.cittumkur.org/skyhack/" class="mobile-sublink">Hackathons</a></li>
+        </ul>
       </li>
-
       <li class="mobile-cta-row">
         <a href="commingsoon.html" class="navbar__cta">Get Started</a>
       </li>
     </ul>
   </div>
-
 </header>
 
 <div class="dropdown-overlay" id="dropOverlay"></div>
 
+<!-- MAIN CONTENT -->
 <main>
-  <section class="hero">
-    <div class="hero__content">
-      <p class="hero__eyebrow">AEROSPACE · RESEARCH · INNOVATION</p>
-      <h1 class="hero__title">Reaching beyond<br>Time</h1>
-      <div class="hero__btns">
-        <a href="current.html" class="navbar__cta">Explore Research</a>
-        <a href="html/globe.html" class="hero__btn-ghost">Our Projects</a>
+  <!-- OFFICES SECTION -->
+  <section class="section" id="offices">
+    <p class="section__label">Locations</p>
+    <h2 class="section__title">Our Offices</h2>
+    <p class="section__subtitle">Visit us at our headquarters in Bengaluru or our regional office in Varanasi</p>
+
+    <div class="offices-grid">
+      <!-- HQ -->
+      <div class="office-card">
+        <div class="office-map">
+          <iframe
+            src="https://www.google.com/maps?q=13.339039,77.120543&z=15&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Headquarters map">
+          </iframe>
+        </div>
+        <div class="office-info">
+          <span class="office-badge">Headquarters</span>
+          <h3>Bengaluru — Karnataka</h3>
+          <p class="building">Basaveshwara Nilaya</p>
+          <address>
+            9th B Cross, 1st Main Road<br>
+            Hanumanthapura, Tumkur<br>
+            Karnataka 572 103, India
+          </address>
+          <div class="office-actions">
+            <a href="https://www.google.com/maps?q=13.339039,77.120543" target="_blank" class="btn-primary">Get Directions</a>
+            <button class="btn-secondary" onclick="navigator.clipboard?.writeText('Basaveshwara Nilaya, 9th B Cross, Tumkur, Karnataka 572 103'); alert('Address copied!')">Copy Address</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Regional -->
+      <div class="office-card">
+        <div class="office-map">
+          <iframe
+            src="https://www.google.com/maps?q=25.3176,82.9739&z=15&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Regional Office map">
+          </iframe>
+        </div>
+        <div class="office-info">
+          <span class="office-badge">Regional Office</span>
+          <h3>Varanasi — Uttar Pradesh</h3>
+          <p class="building">Surya Sarovar</p>
+          <address>
+            416 A BLW, Near Police Chowki<br>
+            Varanasi<br>
+            Uttar Pradesh 221 001, India
+          </address>
+          <div class="office-actions">
+            <a href="https://www.google.com/maps?q=25.3176,82.9739" target="_blank" class="btn-primary">Get Directions</a>
+            <button class="btn-secondary" onclick="navigator.clipboard?.writeText('Surya Sarovar, 416 A BLW, Varanasi, Uttar Pradesh 221 001'); alert('Address copied!')">Copy Address</button>
+          </div>
+        </div>
       </div>
     </div>
   </section>
-    <section class="wave-section" id="waveSection">
-      <canvas id="waveCanvas"></canvas>
-    </section>
-    <section class="video-bar">
-      <div class="video-bar__container">
-        <video id="videoPlayer" autoplay muted loop>
-          <source src="assets/echo.mp4" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-        <button class="sound-button" id="soundBtn" aria-label="Toggle Sound">
-          <svg class="sound-icon sound-icon--muted" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-            <line x1="23" y1="9" x2="17" y2="15"></line>
-            <line x1="17" y1="9" x2="23" y2="15"></line>
-          </svg>
-          <svg class="sound-icon sound-icon--unmuted" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;">
-            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-            <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
-          </svg>
-        </button>
-      </div>
-    </section>
-    <section class="echo-section">
-      <canvas id="echoCanvas"></canvas>
-    </section>
-  </main>
 
+  <!-- CONTACT INFO SECTION -->
+  <section class="section">
+    <div class="contact-info">
+      <h3>Ways to Connect</h3>
+      
+      <div class="info-grid">
+        <div class="info-card">
+          <div class="info-card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+            </svg>
+          </div>
+          <h4>General Enquiries</h4>
+          <a href="mailto:astrakshaya@gmail.com">astrakshaya@gmail.com</a>
+        </div>
+
+        <div class="info-card">
+          <div class="info-card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/>
+            </svg>
+          </div>
+          <h4>Media & Press</h4>
+          <a href="mailto:astrakshaya@gmail.com">astrakshaya@gmail.com</a>
+        </div>
+
+        <div class="info-card">
+          <div class="info-card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+            </svg>
+          </div>
+          <h4>Working Hours</h4>
+          <p>Monday – Saturday<br>8:00 AM – 7:00 PM IST</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- FOOTER -->
 <footer class="footer" id="footer">
   <div class="footer__top">
-
     <div class="footer__brand">
       <a href="/" class="footer__logo">
         <img src="assets/logo.png" alt="" class="footer__logo-img" />
@@ -361,350 +711,22 @@
       <ul class="footer__col-list">
         <li><a href="about.html" class="footer__col-link">About Astrakshaya</a></li>
         <li><a href="about.html" class="footer__col-link">Team</a></li>
-<li>
-  <a href="https://www.cittumkur.org/skyhack/" class="footer__col-link" target="_blank">
-    Hackathons
-  </a>
-</li>        <li><a href="about.html" class="footer__col-link">Contact</a></li>
+        <li><a href="https://www.cittumkur.org/skyhack/" class="footer__col-link" target="_blank">Hackathons</a></li>
+        <li><a href="contact.html" class="footer__col-link">Contact</a></li>
       </ul>
     </div>
-
   </div>
 
   <div class="footer__bottom">
     <p class="footer__copy">© <span id="footerYear"></span> Astrakshaya. All rights reserved.</p>
   </div>
-
 </footer>
 
 <script src="components/navbar/navbar.js"></script>
 <script src="components/footer/footer.js"></script>
 
 <script>
-  // Wave Animation
-  (function () {
-    'use strict';
-
-    const canvas = document.getElementById('waveCanvas');
-    const ctx = canvas.getContext('2d');
-
-    const N = 7;
-    const BAR_W = 30;
-    const GAP = 40;
-    const R = BAR_W / 2;
-
-    let BASE_H = [];
-    let AMPLITUDE = [];
-
-    const BASE_RATIOS = [0.28, 0.38, 0.50, 0.62, 0.50, 0.38, 0.28];
-    const AMP_RATIOS  = [0.04, 0.06, 0.08, 0.10, 0.08, 0.06, 0.04];
-
-    let dpr = window.devicePixelRatio || 1;
-    let W, H;
-    let mouse = { x: -1 };
-    let last = performance.now();
-
-    const phase = Array.from({ length: N }, (_, i) => i * 0.9 + Math.random() * 0.6);
-    const spd   = Array.from({ length: N }, () => 0.5 + Math.random() * 0.3);
-
-    const pos = new Float32Array(N);
-    const vel = new Float32Array(N).fill(0);
-    const STIFFNESS = 100;
-    const DAMPING = 16;
-
-    const innerLevel = new Float32Array(N);
-    const innerVel   = new Float32Array(N).fill(0);
-    const INNER_STIFFNESS = 135;
-    const INNER_DAMPING = 21;
-
-    const liquidSeed = Array.from({ length: N }, () => Math.random() * Math.PI * 2);
-    const shimmerSeed = Array.from({ length: N }, () => Math.random() * 100);
-
-    function setup() {
-      dpr = window.devicePixelRatio || 1;
-      W = canvas.parentElement.offsetWidth;
-      H = canvas.parentElement.offsetHeight;
-
-      canvas.width = Math.round(W * dpr);
-      canvas.height = Math.round(H * dpr);
-      canvas.style.width = W + 'px';
-      canvas.style.height = H + 'px';
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-
-      for (let i = 0; i < N; i++) {
-        BASE_H[i] = H * BASE_RATIOS[i];
-        AMPLITUDE[i] = H * AMP_RATIOS[i];
-        pos[i] = BASE_H[i];
-        innerLevel[i] = BASE_H[i] * 0.72;
-      }
-    }
-
-    function wave(t, ph, s) {
-      return (
-        Math.sin(t * s + ph) * 0.50 +
-        Math.sin(t * s * 2.1 + ph * 1.3) * 0.30 +
-        Math.sin(t * s * 0.5 + ph * 0.8) * 0.20
-      );
-    }
-
-    function liquidWave(xn, t, idx, amp) {
-      return (
-        Math.sin(xn * 8.0 + t * 2.2 + liquidSeed[idx]) * amp * 0.55 +
-        Math.sin(xn * 14.0 - t * 1.5 + liquidSeed[idx] * 0.7) * amp * 0.25 +
-        Math.sin(xn * 22.0 + t * 3.3 + liquidSeed[idx] * 1.4) * amp * 0.12
-      );
-    }
-
-    function shimmerNoise(xn, yn, t, idx) {
-      return (
-        0.5 +
-        0.25 * Math.sin(xn * 18 + t * 1.4 + shimmerSeed[idx]) +
-        0.15 * Math.sin(yn * 26 - t * 2.1 + shimmerSeed[idx] * 0.7) +
-        0.10 * Math.sin((xn + yn) * 20 + t * 2.8)
-      );
-    }
-
-    function roundedBarPath(x, top, h) {
-      ctx.beginPath();
-      ctx.roundRect(x, top, BAR_W, h, R);
-    }
-
-    function drawLiquidFill(x, top, h, fillH, brightness, t, idx) {
-      const left = x;
-      const right = x + BAR_W;
-      const bottom = top + h;
-      const fillTopBase = bottom - fillH;
-      const surfAmp = Math.min(10, Math.max(4, fillH * 0.06));
-
-      ctx.save();
-      roundedBarPath(x, top, h);
-      ctx.clip();
-
-      const fluidGrad = ctx.createLinearGradient(x, fillTopBase, x, bottom);
-      fluidGrad.addColorStop(0, `rgba(255,255,255,${(brightness * 0.12).toFixed(3)})`);
-      fluidGrad.addColorStop(0.45, `rgba(255,255,255,${(brightness * 0.22).toFixed(3)})`);
-      fluidGrad.addColorStop(1, `rgba(255,255,255,${(brightness * 0.06).toFixed(3)})`);
-      ctx.fillStyle = fluidGrad;
-
-      ctx.beginPath();
-      for (let s = 0; s <= 24; s++) {
-        const xn = s / 24;
-        const px = left + xn * BAR_W;
-        const py = fillTopBase + liquidWave(xn, t, idx, surfAmp);
-        if (s === 0) ctx.moveTo(px, py);
-        else ctx.lineTo(px, py);
-      }
-      ctx.lineTo(right, bottom);
-      ctx.lineTo(left, bottom);
-      ctx.closePath();
-      ctx.fill();
-
-      for (let y = fillTopBase; y < bottom; y += 3.2) {
-        const yn = (y - fillTopBase) / Math.max(1, fillH);
-        const alpha = (0.018 + yn * 0.03) * brightness;
-        ctx.fillStyle = `rgba(255,255,255,${alpha.toFixed(3)})`;
-
-        for (let s = 0; s < 8; s++) {
-          const xn = s / 7;
-          const px = left + 3 + xn * (BAR_W - 6);
-          const n = shimmerNoise(xn, yn, t, idx);
-          const w = 1 + n * 1.2;
-          ctx.fillRect(px, y, w, 1);
-        }
-      }
-
-      ctx.strokeStyle = `rgba(255,255,255,${(brightness * 0.22).toFixed(3)})`;
-      ctx.lineWidth = 1.2;
-      ctx.beginPath();
-      for (let s = 0; s <= 24; s++) {
-        const xn = s / 24;
-        const px = left + xn * BAR_W;
-        const py = fillTopBase + liquidWave(xn, t, idx, surfAmp);
-        if (s === 0) ctx.moveTo(px, py);
-        else ctx.lineTo(px, py);
-      }
-      ctx.stroke();
-
-      const bubbleCount = 3;
-      for (let b = 0; b < bubbleCount; b++) {
-        const pr = 1.2 + b * 0.45;
-        const bx = left + 7 + ((Math.sin(t * (0.8 + b * 0.3) + idx * 1.7 + b) * 0.5 + 0.5) * (BAR_W - 14));
-        const rise = ((t * (18 + b * 7) + idx * 23 + b * 31) % Math.max(30, fillH + 20));
-        const by = bottom - rise;
-        if (by > fillTopBase + 4 && by < bottom - 4) {
-          ctx.fillStyle = `rgba(255,255,255,${(0.08 * brightness).toFixed(3)})`;
-          ctx.beginPath();
-          ctx.arc(bx, by, pr, 0, Math.PI * 2);
-          ctx.fill();
-        }
-      }
-
-      ctx.restore();
-    }
-
-    function drawBar(x, cy, h, brightness, t, idx) {
-      const halfH = h / 2;
-      const top = cy - halfH;
-
-      const shell = ctx.createLinearGradient(x, top, x, top + h);
-      shell.addColorStop(0,    `rgba(255,255,255,${(brightness * 0.05).toFixed(3)})`);
-      shell.addColorStop(0.18, `rgba(255,255,255,${(brightness * 0.45).toFixed(3)})`);
-      shell.addColorStop(0.50, `rgba(255,255,255,${(brightness * 0.95).toFixed(3)})`);
-      shell.addColorStop(0.82, `rgba(255,255,255,${(brightness * 0.45).toFixed(3)})`);
-      shell.addColorStop(1,    `rgba(255,255,255,${(brightness * 0.05).toFixed(3)})`);
-
-      ctx.fillStyle = shell;
-      roundedBarPath(x, top, h);
-      ctx.fill();
-
-      const edgeGlow = ctx.createLinearGradient(x, top, x + BAR_W, top);
-      edgeGlow.addColorStop(0, 'rgba(255,255,255,0.18)');
-      edgeGlow.addColorStop(0.35, 'rgba(255,255,255,0.05)');
-      edgeGlow.addColorStop(1, 'rgba(255,255,255,0)');
-      ctx.fillStyle = edgeGlow;
-      ctx.save();
-      roundedBarPath(x, top, h);
-      ctx.clip();
-      ctx.fillRect(x, top, BAR_W, h);
-      ctx.restore();
-
-      const fillTarget = innerLevel[idx];
-      drawLiquidFill(x, top, h, fillTarget, brightness, t, idx);
-    }
-
-    function frame(now) {
-      const dt = Math.min((now - last) / 1000, 0.05);
-      last = now;
-      const t = now / 1000;
-
-      ctx.clearRect(0, 0, W, H);
-
-      const cx = W / 2;
-      const cy = H / 2;
-      const totalW = N * BAR_W + (N - 1) * GAP;
-      const startX = cx - totalW / 2;
-
-      for (let i = 0; i < N; i++) {
-        const wv = wave(t, phase[i], spd[i]);
-        let target = BASE_H[i] + wv * AMPLITUDE[i];
-
-        if (mouse.x >= 0) {
-          const barCx = startX + i * (BAR_W + GAP) + BAR_W / 2;
-          const dist = Math.abs(barCx - mouse.x);
-          const pull = Math.max(0, 1 - dist / 140);
-          target += pull * AMPLITUDE[i] * 2.0;
-        }
-
-        const acc = (target - pos[i]) * STIFFNESS - vel[i] * DAMPING;
-        vel[i] += acc * dt;
-        pos[i] += vel[i] * dt;
-        pos[i] = Math.max(H * 0.04, pos[i]);
-
-        const liquidTarget =
-          pos[i] * 0.68 +
-          Math.sin(t * 1.4 + i * 0.9 + liquidSeed[i]) * (AMPLITUDE[i] * 0.22);
-
-        const innerAcc = (liquidTarget - innerLevel[i]) * INNER_STIFFNESS - innerVel[i] * INNER_DAMPING;
-        innerVel[i] += innerAcc * dt;
-        innerLevel[i] += innerVel[i] * dt;
-        innerLevel[i] = Math.max(pos[i] * 0.18, Math.min(pos[i] * 0.92, innerLevel[i]));
-
-        const distRatio = Math.abs(i - (N - 1) / 2) / ((N - 1) / 2);
-        const brightness = 1.0 - distRatio * 0.62;
-
-        drawBar(startX + i * (BAR_W + GAP), cy, pos[i], brightness, t, i);
-      }
-
-      requestAnimationFrame(frame);
-    }
-
-    window.addEventListener('mousemove', e => { mouse.x = e.clientX; });
-    window.addEventListener('mouseleave', () => { mouse.x = -1; });
-    window.addEventListener('touchmove', e => { mouse.x = e.touches[0].clientX; }, { passive: true });
-    window.addEventListener('touchend', () => { mouse.x = -1; });
-    window.addEventListener('resize', setup);
-
-    setup();
-    requestAnimationFrame(frame);
-  })();
-
-  // Scroll Zoom Animation
-  window.addEventListener('scroll', () => {
-    const waveSection = document.getElementById('waveSection');
-    const rect = waveSection.getBoundingClientRect();
-    
-    const viewportHeight = window.innerHeight;
-    const sectionHeight = waveSection.clientHeight;
-    
-    const scrollProgress = (viewportHeight - rect.top) / (viewportHeight + sectionHeight);
-    
-    const normalizedProgress = Math.max(0, Math.min(1, scrollProgress));
-    const scale = 0.8 + (normalizedProgress * 0.4);
-    
-    const canvas = document.getElementById('waveCanvas');
-    if (canvas) {
-      canvas.style.transform = `scale(${scale})`;
-    }
-  });
-
-  // Sound Button Functionality
-  const soundBtn = document.getElementById('soundBtn');
-  const videoPlayer = document.getElementById('videoPlayer');
-  const mutedIcon = soundBtn.querySelector('.sound-icon--muted');
-  const unmutedIcon = soundBtn.querySelector('.sound-icon--unmuted');
-
-  soundBtn.addEventListener('click', () => {
-    videoPlayer.muted = !videoPlayer.muted;
-    mutedIcon.style.display = videoPlayer.muted ? 'block' : 'none';
-    unmutedIcon.style.display = videoPlayer.muted ? 'none' : 'block';
-  });
-
-  // ASTRAKSHAYA Canvas Animation
-  (function () {
-    'use strict';
-
-    const canvas = document.getElementById('echoCanvas');
-    const ctx    = canvas.getContext('2d');
-    const TEXT   = 'ASTRAKSHAYA';
-
-    let W, H;
-
-    function setup() {
-      const dpr = window.devicePixelRatio || 1;
-      W = window.innerWidth;
-      H = 500;
-      canvas.width        = Math.round(W * dpr);
-      canvas.height       = Math.round(H * dpr);
-      canvas.style.width  = W + 'px';
-      canvas.style.height = H + 'px';
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      draw();
-    }
-
-    function draw() {
-      ctx.clearRect(0, 0, W, H);
-
-      let lo = 10, hi = 2000, size = 500;
-      for (let i = 0; i < 30; i++) {
-        size = (lo + hi) / 2;
-        ctx.font = `900 ${size}px 'Arial Black', Arial, sans-serif`;
-        const w = ctx.measureText(TEXT).width;
-        if (w < W) lo = size;
-        else        hi = size;
-      }
-
-      ctx.font = `900 ${size}px 'Arial Black', Arial, sans-serif`;
-      ctx.textBaseline = 'middle';
-      ctx.textAlign    = 'center';
-
-      ctx.strokeStyle = 'rgba(255,255,255,0.18)';
-      ctx.lineWidth   = Math.max(1, size * 0.004);
-      ctx.strokeText(TEXT, W / 2, H * 0.74);
-    }
-
-    window.addEventListener('resize', setup);
-    setup();
-  })();
+  document.getElementById('footerYear').textContent = new Date().getFullYear();
 </script>
 
 </body>
