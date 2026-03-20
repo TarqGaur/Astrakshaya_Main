@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Astrakshaya</title>
+  <link rel="stylesheet" href="components/navbar/navbar.css" />
+  <link rel="stylesheet" href="components/footer/footer.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,300;6..12,400;6..12,500;6..12,600&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      background: #0a0a0a;
+      color: #ffffff;
+      font-family: 'Nunito Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      width: 100%;
+      height: 100vh;
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1f 50%, #0a0a0a 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(10,158,255,0.15) 0%, transparent 70%);
+      border-radius: 50%;
+      top: -200px;
+      left: -200px;
+      animation: float 8s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(50px, 50px); }
+    }
+
+    .hero__content {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+      padding: 0 30px;
+    }
+
+    .hero__eyebrow {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #0a9eff;
+      margin-bottom: 20px;
+      animation: slideDown 0.8s ease-out;
+    }
+
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero__title {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 600;
+      line-height: 1.2;
+      margin-bottom: 30px;
+      background: linear-gradient(135deg, #ffffff, #b0b0b8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: slideDown 0.8s ease-out 0.1s both;
+    }
+
+    .hero__subtitle {
+      font-size: 1.15rem;
+      font-weight: 300;
+      color: #b0b0b8;
+      margin-bottom: 40px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      animation: slideDown 0.8s ease-out 0.2s both;
+    }
+
+    .hero__btns {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: slideDown 0.8s ease-out 0.3s both;
+    }
+
+    .hero__cta {
+      padding: 12px 28px;
+      background: #0a9eff;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+      display: inline-block;
+    }
+
+    .hero__cta:hover {
+      background: #2bb0ff;
+      transform: translateY(-2px);
+    }
+
+    .hero__btn-ghost {
+      padding: 12px 28px;
+      background: transparent;
+      color: #ffffff;
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+      display: inline-block;
+    }
+
+    .hero__btn-ghost:hover {
+      border-color: #0a9eff;
+      color: #0a9eff;
+    }
+
+    /* ── SECTION ── */
+    .section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 80px 40px;
+    }
+
+    .section__label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #808088;
+      margin-bottom: 40px;
+    }
+
+    .section__title {
+      font-size: 2.5rem;
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: #ffffff;
+    }
+
+    .section__subtitle {
+      font-size: 1.1rem;
+      color: #b0b0b8;
+      margin-bottom: 60px;
+      max-width: 700px;
+    }
+
+    /* ── OFFICES GRID ── */
+    .offices-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+    }
+
+    .office-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+      backdrop-filter: blur(10px);
+    }
+
+    .office-card:hover {
+      transform: translateY(-8px);
+      border-color: #0a9eff;
+      box-shadow: 0 20px 40px rgba(10,158,255,0.1);
+    }
+
+    .office-map {
+      height: 280px;
+      background: linear-gradient(135deg, #1a1a1f 0%, #252530 100%);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .office-map iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+      filter: invert(0.9) hue-rotate(200deg) saturate(1.2) brightness(0.95);
+    }
+
+    .office-info {
+      padding: 35px 30px;
+    }
+
+    .office-badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #0a9eff;
+      background: rgba(10,158,255,0.15);
+      padding: 6px 12px;
+      border-radius: 100px;
+      margin-bottom: 15px;
+      border: 1px solid rgba(10,158,255,0.3);
+    }
+
+    .office-info h3 {
+      font-size: 1.35rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #ffffff;
+    }
+
+    .office-info .building {
+      font-size: 0.95rem;
+      color: #b0b0b8;
+      margin-bottom: 12px;
+    }
+
+    .office-info address {
+      font-style: normal;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: #b0b0b8;
+      margin-bottom: 25px;
+    }
+
+    .office-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      flex: 1;
+      min-width: 140px;
+      padding: 10px 16px;
+      background: linear-gradient(135deg, #0a9eff, #2bb0ff);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+      box-shadow: 0 4px 12px rgba(10,158,255,0.25);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(10,158,255,0.35);
+    }
+
+    .btn-secondary {
+      flex: 1;
+      min-width: 140px;
+      padding: 10px 16px;
+      background: rgba(255,255,255,0.05);
+      color: #ffffff;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: #0a9eff;
+      color: #0a9eff;
+    }
+
+    /* ── CONTACT INFO SECTION ── */
+    .contact-info {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 60px 40px;
+      margin-top: 80px;
+    }
+
+    .contact-info h3 {
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin-bottom: 50px;
+      text-align: center;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+    }
+
+    .info-card {
+      text-align: center;
+      transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    .info-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .info-card-icon {
+      width: 50px;
+      height: 50px;
+      background: rgba(10,158,255,0.15);
+      border: 1px solid rgba(10,158,255,0.3);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      color: #0a9eff;
+      transition: all 0.3s;
+    }
+
+    .info-card:hover .info-card-icon {
+      transform: rotate(10deg) scale(1.1);
+      background: rgba(10,158,255,0.25);
+    }
+
+    .info-card h4 {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #808088;
+      margin-bottom: 10px;
+    }
+
+    .info-card p, .info-card a {
+      font-size: 1rem;
+      font-weight: 500;
+      color: #ffffff;
+      line-height: 1.6;
+    }
+
+    .info-card a {
+      color: #0a9eff;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .info-card a:hover {
+      color: #2bb0ff;
+      text-decoration: underline;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .hero {
+        height: auto;
+        padding: 100px 20px;
+      }
+
+      .section {
+        padding: 60px 20px;
+      }
+
+      .section__title {
+        font-size: 1.8rem;
+      }
+
+      .hero__btns {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .offices-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .contact-info {
+        padding: 40px 20px;
+      }
+
+      .info-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar" id="navbar">
+  <div class="navbar__bar">
+    <a href="/" class="navbar__logo" aria-label="Astrakshaya">
+      <img src="assets/logo.png" alt="" class="navbar__logo-img" />
+      <span class="navbar__logo-text">Astrakshaya</span>
+    </a>
+
+    <nav class="navbar__nav" aria-label="Main navigation">
+      <ul class="navbar__list">
+        <li class="navbar__item">
+          <a href="research.html" class="navbar__link">Research</a>
+        </li>
+        <li class="navbar__item navbar__item--drop" data-drop="mission">
+          <button class="navbar__link navbar__trigger" aria-expanded="false">
+            Projects
+            <svg class="navbar__chevron" width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </li>
+        <li class="navbar__item navbar__item--drop" data-drop="community">
+          <button class="navbar__link navbar__trigger" aria-expanded="false">
+            Developers 
+            <svg class="navbar__chevron" width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </li>
+        <li class="navbar__item navbar__item--drop" data-drop="resources">
+          <button class="navbar__link navbar__trigger" aria-expanded="false">
+            About 
+            <svg class="navbar__chevron" width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="navbar__right">
+      <a href="commingsoon.html" class="navbar__cta">Get Started</a>
+      <button class="navbar__hamburger" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Dropdowns -->
+  <div class="dropdown" id="drop-mission">
+    <div class="dropdown__inner">
+      <div class="dropdown__info">
+        <h3 class="dropdown__headline">Pioneering aerospace<br>research & innovation</h3>
+        <p class="dropdown__sub">Astrakshaya leads cutting-edge projects across propulsion, satellite systems, and deep space exploration.</p>
+        <a href="html/mission.html" class="dropdown__see-all">See all projects</a>
+      </div>
+      <ul class="dropdown__links">
+        <li><a href="commingsoon.html" class="dropdown__link">Propulsion Systems <span>›</span></a></li>
+        <li><a href="commingsoon.html" class="dropdown__link">Satellite Technology <span>›</span></a></li>
+        <li><a href="commingsoon.html" class="dropdown__link">Deep Space Missions <span>›</span></a></li>
+        <li><a href="commingsoon.html" class="dropdown__link">Atmospheric Research <span>›</span></a></li>
+        <li><a href="commingsoon.html" class="dropdown__link">Launch Vehicles <span>›</span></a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="dropdown" id="drop-community">
+    <div class="dropdown__inner">
+      <div class="dropdown__info">
+        <h3 class="dropdown__headline">Built by developers,<br>for developers</h3>
+        <p class="dropdown__sub">Integrate Astrakshaya tools into your applications using our APIs and developer resources.</p>
+        <a href="commingsoon.html" class="dropdown__see-all">Developer resources</a>
+      </div>
+      <ul class="dropdown__links">
+        <li><a href="commingsoon.html" class="dropdown__link">API <span>›</span></a></li>
+        <li><a href="commingsoon.html" class="dropdown__link">Documentation <span>›</span></a></li>
+        <li><a href="commingsoon.html" class="dropdown__link">SDKs & Tools <span>›</span></a></li>
+        <li><a href="commingsoon.html" class="dropdown__link">Open Source <span>›</span></a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="dropdown" id="drop-resources">
+    <div class="dropdown__inner">
+      <div class="dropdown__info">
+        <h3 class="dropdown__headline">Learn more about<br>Astrakshaya and its mission</h3>
+      </div>
+      <ul class="dropdown__links">
+        <li><a href="about.html" class="dropdown__link">About Astrakshaya <span>›</span></a></li>
+        <li><a href="about.html" class="dropdown__link">Team <span>›</span></a></li>
+        <li><a href="https://www.cittumkur.org/skyhack/" class="dropdown__link" target="_blank">Hackathons <span>›</span></a></li>
+        <li><a href="contact.html" class="dropdown__link">Contact <span>›</span></a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <ul class="mobile-list">
+      <li><a href="research.html" class="mobile-link">Research</a></li>
+      <li class="mobile-group">
+        <button class="mobile-link mobile-group__btn" aria-expanded="false">
+          Projects
+          <svg class="navbar__chevron" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <ul class="mobile-sub">
+          <li><a href="#" class="mobile-sublink">Propulsion Systems</a></li>
+          <li><a href="#" class="mobile-sublink">Satellite Technology</a></li>
+          <li><a href="#" class="mobile-sublink">Deep Space Missions</a></li>
+          <li><a href="#" class="mobile-sublink">Atmospheric Research</a></li>
+        </ul>
+      </li>
+      <li class="mobile-group">
+        <button class="mobile-link mobile-group__btn" aria-expanded="false">
+          Developers
+          <svg class="navbar__chevron" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <ul class="mobile-sub">
+          <li><a href="commingsoon.html" class="mobile-sublink">API</a></li>
+          <li><a href="comingsoon.html" class="mobile-sublink">Documentation</a></li>
+          <li><a href="commingsoon.html" class="mobile-sublink">Open Source</a></li>
+        </ul>
+      </li>
+      <li class="mobile-group">
+        <button class="mobile-link mobile-group__btn" aria-expanded="false">
+          About
+          <svg class="navbar__chevron" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <ul class="mobile-sub">
+          <li><a href="about.html" class="mobile-sublink">About Astrakshaya</a></li>
+          <li><a href="about.html" class="mobile-sublink">Team</a></li>
+          <li><a href="https://www.cittumkur.org/skyhack/" class="mobile-sublink">Hackathons</a></li>
+        </ul>
+      </li>
+      <li class="mobile-cta-row">
+        <a href="commingsoon.html" class="navbar__cta">Get Started</a>
+      </li>
+    </ul>
+  </div>
+</header>
+
+<div class="dropdown-overlay" id="dropOverlay"></div>
+
+<!-- MAIN CONTENT -->
+<main>
+  <!-- OFFICES SECTION -->
+  <section class="section" id="offices">
+    <p class="section__label">Locations</p>
+    <h2 class="section__title">Our Offices</h2>
+    <p class="section__subtitle">Visit us at our headquarters in Bengaluru or our regional office in Varanasi</p>
+
+    <div class="offices-grid">
+      <!-- HQ -->
+      <div class="office-card">
+        <div class="office-map">
+          <iframe
+            src="https://www.google.com/maps?q=13.339039,77.120543&z=15&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Headquarters map">
+          </iframe>
+        </div>
+        <div class="office-info">
+          <span class="office-badge">Headquarters</span>
+          <h3>Bengaluru — Karnataka</h3>
+          <p class="building">Basaveshwara Nilaya</p>
+          <address>
+            9th B Cross, 1st Main Road<br>
+            Hanumanthapura, Tumkur<br>
+            Karnataka 572 103, India
+          </address>
+          <div class="office-actions">
+            <a href="https://www.google.com/maps?q=13.339039,77.120543" target="_blank" class="btn-primary">Get Directions</a>
+            <button class="btn-secondary" onclick="navigator.clipboard?.writeText('Basaveshwara Nilaya, 9th B Cross, Tumkur, Karnataka 572 103'); alert('Address copied!')">Copy Address</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Regional -->
+      <div class="office-card">
+        <div class="office-map">
+          <iframe
+            src="https://www.google.com/maps?q=25.3176,82.9739&z=15&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Regional Office map">
+          </iframe>
+        </div>
+        <div class="office-info">
+          <span class="office-badge">Regional Office</span>
+          <h3>Varanasi — Uttar Pradesh</h3>
+          <p class="building">Surya Sarovar</p>
+          <address>
+            416 A BLW, Near Police Chowki<br>
+            Varanasi<br>
+            Uttar Pradesh 221 001, India
+          </address>
+          <div class="office-actions">
+            <a href="https://www.google.com/maps?q=25.3176,82.9739" target="_blank" class="btn-primary">Get Directions</a>
+            <button class="btn-secondary" onclick="navigator.clipboard?.writeText('Surya Sarovar, 416 A BLW, Varanasi, Uttar Pradesh 221 001'); alert('Address copied!')">Copy Address</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT INFO SECTION -->
+  <section class="section">
+    <div class="contact-info">
+      <h3>Ways to Connect</h3>
+      
+      <div class="info-grid">
+        <div class="info-card">
+          <div class="info-card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+            </svg>
+          </div>
+          <h4>General Enquiries</h4>
+          <a href="mailto:astrakshaya@gmail.com">astrakshaya@gmail.com</a>
+        </div>
+
+        <div class="info-card">
+          <div class="info-card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/>
+            </svg>
+          </div>
+          <h4>Media & Press</h4>
+          <a href="mailto:astrakshaya@gmail.com">astrakshaya@gmail.com</a>
+        </div>
+
+        <div class="info-card">
+          <div class="info-card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+            </svg>
+          </div>
+          <h4>Working Hours</h4>
+          <p>Monday – Saturday<br>8:00 AM – 7:00 PM IST</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- FOOTER -->
+<footer class="footer" id="footer">
+  <div class="footer__top">
+    <div class="footer__brand">
+      <a href="/" class="footer__logo">
+        <img src="assets/logo.png" alt="" class="footer__logo-img" />
+        <span class="footer__logo-text">Astrakshaya</span>
+      </a>
+      <p class="footer__tagline">Beyond the Sky.</p>
+    </div>
+
+    <div class="footer__col">
+      <h4 class="footer__col-title">Research</h4>
+      <ul class="footer__col-list">
+        <li><a href="index.html" class="footer__col-link">Home</a></li>
+        <li><a href="research.html" class="footer__col-link">Research</a></li>
+        <li><a href="Projects.html" class="footer__col-link">Projects</a></li>
+        <li><a href="contact.html" class="footer__col-link">Address</a></li>
+      </ul>
+    </div>
+
+    <div class="footer__col">
+      <h4 class="footer__col-title">Projects</h4>
+      <ul class="footer__col-list">
+        <li><a href="comingsoon.html" class="footer__col-link">Propulsion Systems</a></li>
+        <li><a href="comingsoon.html" class="footer__col-link">Satellite Technology</a></li>
+        <li><a href="comingsoon.html" class="footer__col-link">Deep Space Missions</a></li>
+        <li><a href="comingsoon.html" class="footer__col-link">Atmospheric Research</a></li>
+      </ul>
+    </div>
+
+    <div class="footer__col">
+      <h4 class="footer__col-title">Developers</h4>
+      <ul class="footer__col-list">
+        <li><a href="comingsoon.html" class="footer__col-link">API</a></li>
+        <li><a href="comingsoon.html" class="footer__col-link">Documentation</a></li>
+        <li><a href="comingsoon.html" class="footer__col-link">SDKs</a></li>
+      </ul>
+    </div>
+
+    <div class="footer__col">
+      <h4 class="footer__col-title">Company</h4>
+      <ul class="footer__col-list">
+        <li><a href="about.html" class="footer__col-link">About Astrakshaya</a></li>
+        <li><a href="about.html" class="footer__col-link">Team</a></li>
+        <li><a href="https://www.cittumkur.org/skyhack/" class="footer__col-link" target="_blank">Hackathons</a></li>
+        <li><a href="contact.html" class="footer__col-link">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer__bottom">
+    <p class="footer__copy">© <span id="footerYear"></span> Astrakshaya. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="components/navbar/navbar.js"></script>
+<script src="components/footer/footer.js"></script>
+
+<script>
+  document.getElementById('footerYear').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
