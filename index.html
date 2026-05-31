@@ -21,6 +21,28 @@
       margin: 0;
       padding: 0;
       overflow-x: hidden;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255, 255, 255, 0.4) rgba(0, 0, 0, 0.2);
+    }
+
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.4);
+      border-radius: 5px;
+      border: 2px solid transparent;
+      background-clip: content-box;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 255, 255, 0.6);
+      background-clip: content-box;
     }
 
     .wave-section {
@@ -159,10 +181,15 @@
     </nav>
 
     <div class="navbar__right">
-      <a href="commingsoon.html" class="navbar__cta">Get Started</a>
+       <a href="https://astrakshayachat.vercel.app/" class="navbar__cta">Enclave</a>
       <button class="navbar__hamburger" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
+      <a href="getstarted.html" class="navbar__cta">Get Started</a>
+      <button class="navbar__hamburger" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      
     </div>
 
   </div>
@@ -173,14 +200,14 @@
       <div class="dropdown__info">
         <h3 class="dropdown__headline">Pioneering aerospace<br>research & innovation</h3>
         <p class="dropdown__sub">Astrakshaya leads cutting-edge projects across propulsion, satellite systems, and deep space exploration.</p>
-        <a href="html/mission.html" class="dropdown__see-all">See all projects</a>
+        <a href="project.html" class="dropdown__see-all">See all projects</a>
       </div>
       <ul class="dropdown__links">
-        <li><a href="commingsoon.html" class="dropdown__link">Propulsion Systems <span>›</span></a></li>
-        <li><a href="commingsoon.html" class="dropdown__link">Satellite Technology <span>›</span></a></li>
-        <li><a href="commingsoon.html" class="dropdown__link">Deep Space Missions <span>›</span></a></li>
-        <li><a href="commingsoon.html" class="dropdown__link">Atmospheric Research <span>›</span></a></li>
-        <li><a href="commingsoon.html" class="dropdown__link">Launch Vehicles <span>›</span></a></li>
+        <li><a href="project.html#propulsion" class="dropdown__link">Propulsion Systems <span>›</span></a></li>
+        <li><a href="project.html#satellite" class="dropdown__link">Satellite Technology <span>›</span></a></li>
+        <li><a href="project.html#deep-space" class="dropdown__link">Deep Space Missions <span>›</span></a></li>
+        <li><a href="project.html#atmospheric" class="dropdown__link">Atmospheric Research <span>›</span></a></li>
+        <li><a href="project.html#launch" class="dropdown__link">Launch Vehicles <span>›</span></a></li>
       </ul>
     </div>
   </div>
@@ -190,13 +217,13 @@
       <div class="dropdown__info">
         <h3 class="dropdown__headline">Built by developers,<br>for developers</h3>
         <p class="dropdown__sub">Integrate Astrakshaya tools into your applications using our APIs and developer resources.</p>
-        <a href="commingsoon.html" class="dropdown__see-all">Developer resources</a>
+        <a href="developer.html" class="dropdown__see-all">Developer resources</a>
       </div>
       <ul class="dropdown__links">
-        <li><a href="commingsoon.html" class="dropdown__link">API <span>›</span></a></li>
-        <li><a href="commingsoon.html" class="dropdown__link">Documentation <span>›</span></a></li>
-        <li><a href="commingsoon.html" class="dropdown__link">SDKs & Tools <span>›</span></a></li>
-        <li><a href="commingsoon.html" class="dropdown__link">Open Source <span>›</span></a></li>
+        <li><a href="developer.html#api" class="dropdown__link">API <span>›</span></a></li>
+        <li><a href="developer.html#documentation" class="dropdown__link">Documentation <span>›</span></a></li>
+        <li><a href="developer.html#sdks" class="dropdown__link">SDKs & Tools <span>›</span></a></li>
+        <li><a href="developer.html#opensource" class="dropdown__link">Open Source <span>›</span></a></li>
       </ul>
     </div>
   </div>
@@ -210,7 +237,7 @@
         <li><a href="about.html" class="dropdown__link">About Astrakshaya <span>›</span></a></li>
         <li><a href="about.html" class="dropdown__link">Team <span>›</span></a></li>
         <li><a href="https://www.cittumkur.org/skyhack/" class="dropdown__link" target="_blank">Hackathons <span>›</span></a></li>
-        <li><a href="contact.html" class="dropdown__link">Contact <span>›</span></a></li>
+        <li><a href="about.html#contact-section" class="dropdown__link">Contact <span>›</span></a></li>
       </ul>
     </div>
   </div>
@@ -227,10 +254,10 @@
           </svg>
         </button>
         <ul class="mobile-sub">
-          <li><a href="#" class="mobile-sublink">Propulsion Systems</a></li>
-          <li><a href="#" class="mobile-sublink">Satellite Technology</a></li>
-          <li><a href="#" class="mobile-sublink">Deep Space Missions</a></li>
-          <li><a href="#" class="mobile-sublink">Atmospheric Research</a></li>
+          <li><a href="project.html#propulsion" class="mobile-sublink">Propulsion Systems</a></li>
+          <li><a href="project.html#satellite" class="mobile-sublink">Satellite Technology</a></li>
+          <li><a href="project.html#deep-space" class="mobile-sublink">Deep Space Missions</a></li>
+          <li><a href="project.html#atmospheric" class="mobile-sublink">Atmospheric Research</a></li>
         </ul>
       </li>
 
@@ -242,9 +269,10 @@
           </svg>
         </button>
         <ul class="mobile-sub">
-          <li><a href="commingsoon.html" class="mobile-sublink">API</a></li>
-          <li><a href="comingsoon.html" class="mobile-sublink">Documentation</a></li>
-          <li><a href="commingsoon.html" class="mobile-sublink">Open Source</a></li>
+          <li><a href="developer.html#api" class="mobile-sublink">API</a></li>
+          <li><a href="developer.html#documentation" class="mobile-sublink">Documentation</a></li>
+          <li><a href="developer.html#sdks" class="mobile-sublink">SDKs & Tools</a></li>
+          <li><a href="developer.html#opensource" class="mobile-sublink">Open Source</a></li>
         </ul>
       </li>
 
@@ -258,15 +286,16 @@
         <ul class="mobile-sub">
           <li><a href="about.html" class="mobile-sublink">About Astrakshaya</a></li>
           <li><a href="about.html" class="mobile-sublink">Team</a></li>
-<li>
-  <a href="https://www.cittumkur.org/skyhack/" class="footer__col-link" target="_blank">
-    Hackathons
-  </a>
-</li>            </ul>
+          <li><a href="https://www.cittumkur.org/skyhack/" class="mobile-sublink" target="_blank">Hackathons</a></li>
+          <li><a href="about.html#contact-section" class="mobile-sublink">Contact</a></li>
+        </ul>
       </li>
 
       <li class="mobile-cta-row">
-        <a href="commingsoon.html" class="navbar__cta">Get Started</a>
+        <a href="getstarted.html" class="navbar__cta">Get Started</a>
+      </li>
+       <li class="mobile-cta-row">
+        <a href="https://astrakshayachat.vercel.app/" class="navbar__cta">Enclave</a>
       </li>
     </ul>
   </div>
@@ -281,8 +310,8 @@
       <p class="hero__eyebrow">AEROSPACE · RESEARCH · INNOVATION</p>
       <h1 class="hero__title">Reaching beyond<br>Time</h1>
       <div class="hero__btns">
-        <a href="current.html" class="navbar__cta">Explore Research</a>
-        <a href="html/globe.html" class="hero__btn-ghost">Our Projects</a>
+        <a href="research.html" class="navbar__cta">Explore Research</a>
+        <a href="project.html" class="hero__btn-ghost">Our Projects</a>
       </div>
     </div>
   </section>
@@ -330,27 +359,27 @@
       <ul class="footer__col-list">
         <li><a href="index.html" class="footer__col-link">Home</a></li>
         <li><a href="research.html" class="footer__col-link">Research</a></li>
-        <li><a href="Projects.html" class="footer__col-link">Projects</a></li>
-        <li><a href="contact.html" class="footer__col-link">Address</a></li>
+        <li><a href="project.html" class="footer__col-link">Projects</a></li>
+        <li><a href="about.html#contact-section" class="footer__col-link">Contact</a></li>
       </ul>
     </div>
 
     <div class="footer__col">
       <h4 class="footer__col-title">Projects</h4>
       <ul class="footer__col-list">
-        <li><a href="comingsoon.html" class="footer__col-link">Propulsion Systems</a></li>
-        <li><a href="comingsoon.html" class="footer__col-link">Satellite Technology</a></li>
-        <li><a href="comingsoon.html" class="footer__col-link">Deep Space Missions</a></li>
-        <li><a href="comingsoon.html" class="footer__col-link">Atmospheric Research</a></li>
+        <li><a href="project.html#propulsion" class="footer__col-link">Propulsion Systems</a></li>
+        <li><a href="project.html#satellite" class="footer__col-link">Satellite Technology</a></li>
+        <li><a href="project.html#deep-space" class="footer__col-link">Deep Space Missions</a></li>
+        <li><a href="project.html#atmospheric" class="footer__col-link">Atmospheric Research</a></li>
       </ul>
     </div>
 
     <div class="footer__col">
       <h4 class="footer__col-title">Developers</h4>
       <ul class="footer__col-list">
-        <li><a href="comingsoon.html" class="footer__col-link">API</a></li>
-        <li><a href="comingsoon.html" class="footer__col-link">Documentation</a></li>
-        <li><a href="comingsoon.html" class="footer__col-link">SDKs</a></li>
+        <li><a href="developer.html#api" class="footer__col-link">API</a></li>
+        <li><a href="developer.html#documentation" class="footer__col-link">Documentation</a></li>
+        <li><a href="developer.html#sdks" class="footer__col-link">SDKs</a></li>
       </ul>
     </div>
 
@@ -363,7 +392,7 @@
   <a href="https://www.cittumkur.org/skyhack/" class="footer__col-link" target="_blank">
     Hackathons
   </a>
-</li>        <li><a href="contact.html" class="footer__col-link">Contact</a></li>
+</li>        <li><a href="about.html#contact-section" class="footer__col-link">Contact</a></li>
       </ul>
     </div>
 
